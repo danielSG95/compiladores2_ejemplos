@@ -1,0 +1,6 @@
+digraph ast {
+	2085852495632 [label="TipoNodo.PRINT - "]
+	2085861503136 -> 2085852495632
+	2085861505968 [label="TipoNodo.TERMINAL - \"text\""]
+	2085852495632 -> 2085861505968
+}
