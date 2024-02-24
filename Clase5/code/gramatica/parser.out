@@ -1,0 +1,1309 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> init
+Rule 1     init -> instrucciones
+Rule 2     instrucciones -> instrucciones instruccion
+Rule 3     instrucciones -> instruccion
+Rule 4     instruccion -> instruccion_inline
+Rule 5     instruccion_inline -> print
+Rule 6     instruccion_inline -> declare
+Rule 7     instruccion_inline -> asignacion
+Rule 8     print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+Rule 9     declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+Rule 10    asignacion -> ID ASIG expresion_logica SEMICOLON
+Rule 11    tipo_declaracion -> CONST
+Rule 12    tipo_declaracion -> VAR
+Rule 13    expresion_logica -> expresion_relacional AND expresion_relacional
+Rule 14    expresion_logica -> expresion_relacional OR expresion_relacional
+Rule 15    expresion_logica -> NOT expresion_relacional
+Rule 16    expresion_logica -> expresion_relacional
+Rule 17    expresion_relacional -> expresion_numerica MAYOR expresion_numerica
+Rule 18    expresion_relacional -> expresion_numerica MENOR expresion_numerica
+Rule 19    expresion_relacional -> expresion_numerica MAYORI expresion_numerica
+Rule 20    expresion_relacional -> expresion_numerica MENORI expresion_numerica
+Rule 21    expresion_relacional -> expresion_numerica IGUAL expresion_numerica
+Rule 22    expresion_relacional -> expresion_numerica DIFF expresion_numerica
+Rule 23    expresion_relacional -> expresion_numerica
+Rule 24    expresion_numerica -> MINUS expresion_numerica
+Rule 25    expresion_numerica -> expresion_numerica PLUS expresion_numerica
+Rule 26    expresion_numerica -> expresion_numerica MINUS expresion_numerica
+Rule 27    expresion_numerica -> expresion_numerica TIMES expresion_numerica
+Rule 28    expresion_numerica -> expresion_numerica DIVIDE expresion_numerica
+Rule 29    expresion_numerica -> expresion_numerica MODULE expresion_numerica
+Rule 30    expresion_numerica -> terminal
+Rule 31    terminal -> TNUMBER
+Rule 32    terminal -> TSTRING
+Rule 33    terminal -> ID
+Rule 34    tipo_dato -> STRING
+Rule 35    tipo_dato -> NUMBER
+Rule 36    tipo_dato -> empty
+Rule 37    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 13
+ASIG                 : 9 10
+COLON                : 9
+CONSOLE              : 8
+CONST                : 11
+DIFF                 : 22
+DIVIDE               : 28
+DOT                  : 8
+ID                   : 9 10 33
+IGUAL                : 21
+LOG                  : 8
+LPAREN               : 8
+MAYOR                : 17
+MAYORI               : 19
+MENOR                : 18
+MENORI               : 20
+MINUS                : 24 26
+MODULE               : 29
+NOT                  : 15
+NUMBER               : 35
+OR                   : 14
+PLUS                 : 25
+RPAREN               : 8
+SEMICOLON            : 8 9 10
+STRING               : 34
+TIMES                : 27
+TNUMBER              : 31
+TSTRING              : 32
+VAR                  : 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 7
+declare              : 6
+empty                : 36
+expresion_logica     : 8 9 10
+expresion_numerica   : 17 17 18 18 19 19 20 20 21 21 22 22 23 24 25 25 26 26 27 27 28 28 29 29
+expresion_relacional : 13 13 14 14 15 16
+init                 : 0
+instruccion          : 2 3
+instruccion_inline   : 4
+instrucciones        : 1 2
+print                : 5
+terminal             : 30
+tipo_dato            : 9
+tipo_declaracion     : 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . init
+    (1) init -> . instrucciones
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instrucciones -> . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion_inline -> . print
+    (6) instruccion_inline -> . declare
+    (7) instruccion_inline -> . asignacion
+    (8) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (9) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (10) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (11) tipo_declaracion -> . CONST
+    (12) tipo_declaracion -> . VAR
+
+    CONSOLE         shift and go to state 8
+    ID              shift and go to state 10
+    CONST           shift and go to state 11
+    VAR             shift and go to state 12
+
+    init                           shift and go to state 1
+    instrucciones                  shift and go to state 2
+    instruccion                    shift and go to state 3
+    instruccion_inline             shift and go to state 4
+    print                          shift and go to state 5
+    declare                        shift and go to state 6
+    asignacion                     shift and go to state 7
+    tipo_declaracion               shift and go to state 9
+
+state 1
+
+    (0) S' -> init .
+
+
+
+state 2
+
+    (1) init -> instrucciones .
+    (2) instrucciones -> instrucciones . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion_inline -> . print
+    (6) instruccion_inline -> . declare
+    (7) instruccion_inline -> . asignacion
+    (8) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (9) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (10) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (11) tipo_declaracion -> . CONST
+    (12) tipo_declaracion -> . VAR
+
+    $end            reduce using rule 1 (init -> instrucciones .)
+    CONSOLE         shift and go to state 8
+    ID              shift and go to state 10
+    CONST           shift and go to state 11
+    VAR             shift and go to state 12
+
+    instruccion                    shift and go to state 13
+    instruccion_inline             shift and go to state 4
+    print                          shift and go to state 5
+    declare                        shift and go to state 6
+    asignacion                     shift and go to state 7
+    tipo_declaracion               shift and go to state 9
+
+state 3
+
+    (3) instrucciones -> instruccion .
+
+    CONSOLE         reduce using rule 3 (instrucciones -> instruccion .)
+    ID              reduce using rule 3 (instrucciones -> instruccion .)
+    CONST           reduce using rule 3 (instrucciones -> instruccion .)
+    VAR             reduce using rule 3 (instrucciones -> instruccion .)
+    $end            reduce using rule 3 (instrucciones -> instruccion .)
+
+
+state 4
+
+    (4) instruccion -> instruccion_inline .
+
+    CONSOLE         reduce using rule 4 (instruccion -> instruccion_inline .)
+    ID              reduce using rule 4 (instruccion -> instruccion_inline .)
+    CONST           reduce using rule 4 (instruccion -> instruccion_inline .)
+    VAR             reduce using rule 4 (instruccion -> instruccion_inline .)
+    $end            reduce using rule 4 (instruccion -> instruccion_inline .)
+
+
+state 5
+
+    (5) instruccion_inline -> print .
+
+    CONSOLE         reduce using rule 5 (instruccion_inline -> print .)
+    ID              reduce using rule 5 (instruccion_inline -> print .)
+    CONST           reduce using rule 5 (instruccion_inline -> print .)
+    VAR             reduce using rule 5 (instruccion_inline -> print .)
+    $end            reduce using rule 5 (instruccion_inline -> print .)
+
+
+state 6
+
+    (6) instruccion_inline -> declare .
+
+    CONSOLE         reduce using rule 6 (instruccion_inline -> declare .)
+    ID              reduce using rule 6 (instruccion_inline -> declare .)
+    CONST           reduce using rule 6 (instruccion_inline -> declare .)
+    VAR             reduce using rule 6 (instruccion_inline -> declare .)
+    $end            reduce using rule 6 (instruccion_inline -> declare .)
+
+
+state 7
+
+    (7) instruccion_inline -> asignacion .
+
+    CONSOLE         reduce using rule 7 (instruccion_inline -> asignacion .)
+    ID              reduce using rule 7 (instruccion_inline -> asignacion .)
+    CONST           reduce using rule 7 (instruccion_inline -> asignacion .)
+    VAR             reduce using rule 7 (instruccion_inline -> asignacion .)
+    $end            reduce using rule 7 (instruccion_inline -> asignacion .)
+
+
+state 8
+
+    (8) print -> CONSOLE . DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+
+    DOT             shift and go to state 14
+
+
+state 9
+
+    (9) declare -> tipo_declaracion . ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+
+    ID              shift and go to state 15
+
+
+state 10
+
+    (10) asignacion -> ID . ASIG expresion_logica SEMICOLON
+
+    ASIG            shift and go to state 16
+
+
+state 11
+
+    (11) tipo_declaracion -> CONST .
+
+    ID              reduce using rule 11 (tipo_declaracion -> CONST .)
+
+
+state 12
+
+    (12) tipo_declaracion -> VAR .
+
+    ID              reduce using rule 12 (tipo_declaracion -> VAR .)
+
+
+state 13
+
+    (2) instrucciones -> instrucciones instruccion .
+
+    CONSOLE         reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    ID              reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    CONST           reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    VAR             reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+
+
+state 14
+
+    (8) print -> CONSOLE DOT . LOG LPAREN expresion_logica RPAREN SEMICOLON
+
+    LOG             shift and go to state 17
+
+
+state 15
+
+    (9) declare -> tipo_declaracion ID . COLON tipo_dato ASIG expresion_logica SEMICOLON
+
+    COLON           shift and go to state 18
+
+
+state 16
+
+    (10) asignacion -> ID ASIG . expresion_logica SEMICOLON
+    (13) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (14) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (15) expresion_logica -> . NOT expresion_relacional
+    (16) expresion_logica -> . expresion_relacional
+    (17) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (18) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (19) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (20) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (21) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (22) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (23) expresion_relacional -> . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    NOT             shift and go to state 22
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_logica               shift and go to state 20
+    expresion_relacional           shift and go to state 21
+    expresion_numerica             shift and go to state 23
+    terminal                       shift and go to state 25
+
+state 17
+
+    (8) print -> CONSOLE DOT LOG . LPAREN expresion_logica RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 28
+
+
+state 18
+
+    (9) declare -> tipo_declaracion ID COLON . tipo_dato ASIG expresion_logica SEMICOLON
+    (34) tipo_dato -> . STRING
+    (35) tipo_dato -> . NUMBER
+    (36) tipo_dato -> . empty
+    (37) empty -> .
+
+    STRING          shift and go to state 30
+    NUMBER          shift and go to state 31
+    ASIG            reduce using rule 37 (empty -> .)
+
+    tipo_dato                      shift and go to state 29
+    empty                          shift and go to state 32
+
+state 19
+
+    (33) terminal -> ID .
+
+    MAYOR           reduce using rule 33 (terminal -> ID .)
+    MENOR           reduce using rule 33 (terminal -> ID .)
+    MAYORI          reduce using rule 33 (terminal -> ID .)
+    MENORI          reduce using rule 33 (terminal -> ID .)
+    IGUAL           reduce using rule 33 (terminal -> ID .)
+    DIFF            reduce using rule 33 (terminal -> ID .)
+    PLUS            reduce using rule 33 (terminal -> ID .)
+    MINUS           reduce using rule 33 (terminal -> ID .)
+    TIMES           reduce using rule 33 (terminal -> ID .)
+    DIVIDE          reduce using rule 33 (terminal -> ID .)
+    MODULE          reduce using rule 33 (terminal -> ID .)
+    AND             reduce using rule 33 (terminal -> ID .)
+    OR              reduce using rule 33 (terminal -> ID .)
+    SEMICOLON       reduce using rule 33 (terminal -> ID .)
+    RPAREN          reduce using rule 33 (terminal -> ID .)
+
+
+state 20
+
+    (10) asignacion -> ID ASIG expresion_logica . SEMICOLON
+
+    SEMICOLON       shift and go to state 33
+
+
+state 21
+
+    (13) expresion_logica -> expresion_relacional . AND expresion_relacional
+    (14) expresion_logica -> expresion_relacional . OR expresion_relacional
+    (16) expresion_logica -> expresion_relacional .
+
+    AND             shift and go to state 34
+    OR              shift and go to state 35
+    SEMICOLON       reduce using rule 16 (expresion_logica -> expresion_relacional .)
+    RPAREN          reduce using rule 16 (expresion_logica -> expresion_relacional .)
+
+
+state 22
+
+    (15) expresion_logica -> NOT . expresion_relacional
+    (17) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (18) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (19) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (20) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (21) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (22) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (23) expresion_relacional -> . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_relacional           shift and go to state 36
+    expresion_numerica             shift and go to state 23
+    terminal                       shift and go to state 25
+
+state 23
+
+    (17) expresion_relacional -> expresion_numerica . MAYOR expresion_numerica
+    (18) expresion_relacional -> expresion_numerica . MENOR expresion_numerica
+    (19) expresion_relacional -> expresion_numerica . MAYORI expresion_numerica
+    (20) expresion_relacional -> expresion_numerica . MENORI expresion_numerica
+    (21) expresion_relacional -> expresion_numerica . IGUAL expresion_numerica
+    (22) expresion_relacional -> expresion_numerica . DIFF expresion_numerica
+    (23) expresion_relacional -> expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           shift and go to state 37
+    MENOR           shift and go to state 38
+    MAYORI          shift and go to state 39
+    MENORI          shift and go to state 40
+    IGUAL           shift and go to state 41
+    DIFF            shift and go to state 42
+    AND             reduce using rule 23 (expresion_relacional -> expresion_numerica .)
+    OR              reduce using rule 23 (expresion_relacional -> expresion_numerica .)
+    SEMICOLON       reduce using rule 23 (expresion_relacional -> expresion_numerica .)
+    RPAREN          reduce using rule 23 (expresion_relacional -> expresion_numerica .)
+    PLUS            shift and go to state 43
+    MINUS           shift and go to state 44
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+
+state 24
+
+    (24) expresion_numerica -> MINUS . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 48
+    terminal                       shift and go to state 25
+
+state 25
+
+    (30) expresion_numerica -> terminal .
+
+    MAYOR           reduce using rule 30 (expresion_numerica -> terminal .)
+    MENOR           reduce using rule 30 (expresion_numerica -> terminal .)
+    MAYORI          reduce using rule 30 (expresion_numerica -> terminal .)
+    MENORI          reduce using rule 30 (expresion_numerica -> terminal .)
+    IGUAL           reduce using rule 30 (expresion_numerica -> terminal .)
+    DIFF            reduce using rule 30 (expresion_numerica -> terminal .)
+    PLUS            reduce using rule 30 (expresion_numerica -> terminal .)
+    MINUS           reduce using rule 30 (expresion_numerica -> terminal .)
+    TIMES           reduce using rule 30 (expresion_numerica -> terminal .)
+    DIVIDE          reduce using rule 30 (expresion_numerica -> terminal .)
+    MODULE          reduce using rule 30 (expresion_numerica -> terminal .)
+    AND             reduce using rule 30 (expresion_numerica -> terminal .)
+    OR              reduce using rule 30 (expresion_numerica -> terminal .)
+    SEMICOLON       reduce using rule 30 (expresion_numerica -> terminal .)
+    RPAREN          reduce using rule 30 (expresion_numerica -> terminal .)
+
+
+state 26
+
+    (31) terminal -> TNUMBER .
+
+    MAYOR           reduce using rule 31 (terminal -> TNUMBER .)
+    MENOR           reduce using rule 31 (terminal -> TNUMBER .)
+    MAYORI          reduce using rule 31 (terminal -> TNUMBER .)
+    MENORI          reduce using rule 31 (terminal -> TNUMBER .)
+    IGUAL           reduce using rule 31 (terminal -> TNUMBER .)
+    DIFF            reduce using rule 31 (terminal -> TNUMBER .)
+    PLUS            reduce using rule 31 (terminal -> TNUMBER .)
+    MINUS           reduce using rule 31 (terminal -> TNUMBER .)
+    TIMES           reduce using rule 31 (terminal -> TNUMBER .)
+    DIVIDE          reduce using rule 31 (terminal -> TNUMBER .)
+    MODULE          reduce using rule 31 (terminal -> TNUMBER .)
+    AND             reduce using rule 31 (terminal -> TNUMBER .)
+    OR              reduce using rule 31 (terminal -> TNUMBER .)
+    SEMICOLON       reduce using rule 31 (terminal -> TNUMBER .)
+    RPAREN          reduce using rule 31 (terminal -> TNUMBER .)
+
+
+state 27
+
+    (32) terminal -> TSTRING .
+
+    MAYOR           reduce using rule 32 (terminal -> TSTRING .)
+    MENOR           reduce using rule 32 (terminal -> TSTRING .)
+    MAYORI          reduce using rule 32 (terminal -> TSTRING .)
+    MENORI          reduce using rule 32 (terminal -> TSTRING .)
+    IGUAL           reduce using rule 32 (terminal -> TSTRING .)
+    DIFF            reduce using rule 32 (terminal -> TSTRING .)
+    PLUS            reduce using rule 32 (terminal -> TSTRING .)
+    MINUS           reduce using rule 32 (terminal -> TSTRING .)
+    TIMES           reduce using rule 32 (terminal -> TSTRING .)
+    DIVIDE          reduce using rule 32 (terminal -> TSTRING .)
+    MODULE          reduce using rule 32 (terminal -> TSTRING .)
+    AND             reduce using rule 32 (terminal -> TSTRING .)
+    OR              reduce using rule 32 (terminal -> TSTRING .)
+    SEMICOLON       reduce using rule 32 (terminal -> TSTRING .)
+    RPAREN          reduce using rule 32 (terminal -> TSTRING .)
+
+
+state 28
+
+    (8) print -> CONSOLE DOT LOG LPAREN . expresion_logica RPAREN SEMICOLON
+    (13) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (14) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (15) expresion_logica -> . NOT expresion_relacional
+    (16) expresion_logica -> . expresion_relacional
+    (17) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (18) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (19) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (20) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (21) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (22) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (23) expresion_relacional -> . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    NOT             shift and go to state 22
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_logica               shift and go to state 49
+    expresion_relacional           shift and go to state 21
+    expresion_numerica             shift and go to state 23
+    terminal                       shift and go to state 25
+
+state 29
+
+    (9) declare -> tipo_declaracion ID COLON tipo_dato . ASIG expresion_logica SEMICOLON
+
+    ASIG            shift and go to state 50
+
+
+state 30
+
+    (34) tipo_dato -> STRING .
+
+    ASIG            reduce using rule 34 (tipo_dato -> STRING .)
+
+
+state 31
+
+    (35) tipo_dato -> NUMBER .
+
+    ASIG            reduce using rule 35 (tipo_dato -> NUMBER .)
+
+
+state 32
+
+    (36) tipo_dato -> empty .
+
+    ASIG            reduce using rule 36 (tipo_dato -> empty .)
+
+
+state 33
+
+    (10) asignacion -> ID ASIG expresion_logica SEMICOLON .
+
+    CONSOLE         reduce using rule 10 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    ID              reduce using rule 10 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    CONST           reduce using rule 10 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    VAR             reduce using rule 10 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    $end            reduce using rule 10 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+
+
+state 34
+
+    (13) expresion_logica -> expresion_relacional AND . expresion_relacional
+    (17) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (18) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (19) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (20) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (21) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (22) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (23) expresion_relacional -> . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_relacional           shift and go to state 51
+    expresion_numerica             shift and go to state 23
+    terminal                       shift and go to state 25
+
+state 35
+
+    (14) expresion_logica -> expresion_relacional OR . expresion_relacional
+    (17) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (18) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (19) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (20) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (21) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (22) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (23) expresion_relacional -> . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_relacional           shift and go to state 52
+    expresion_numerica             shift and go to state 23
+    terminal                       shift and go to state 25
+
+state 36
+
+    (15) expresion_logica -> NOT expresion_relacional .
+
+    SEMICOLON       reduce using rule 15 (expresion_logica -> NOT expresion_relacional .)
+    RPAREN          reduce using rule 15 (expresion_logica -> NOT expresion_relacional .)
+
+
+state 37
+
+    (17) expresion_relacional -> expresion_numerica MAYOR . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 53
+    terminal                       shift and go to state 25
+
+state 38
+
+    (18) expresion_relacional -> expresion_numerica MENOR . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 54
+    terminal                       shift and go to state 25
+
+state 39
+
+    (19) expresion_relacional -> expresion_numerica MAYORI . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 55
+    terminal                       shift and go to state 25
+
+state 40
+
+    (20) expresion_relacional -> expresion_numerica MENORI . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 56
+    terminal                       shift and go to state 25
+
+state 41
+
+    (21) expresion_relacional -> expresion_numerica IGUAL . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 57
+    terminal                       shift and go to state 25
+
+state 42
+
+    (22) expresion_relacional -> expresion_numerica DIFF . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 58
+    terminal                       shift and go to state 25
+
+state 43
+
+    (25) expresion_numerica -> expresion_numerica PLUS . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 59
+    terminal                       shift and go to state 25
+
+state 44
+
+    (26) expresion_numerica -> expresion_numerica MINUS . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 60
+    terminal                       shift and go to state 25
+
+state 45
+
+    (27) expresion_numerica -> expresion_numerica TIMES . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 61
+    terminal                       shift and go to state 25
+
+state 46
+
+    (28) expresion_numerica -> expresion_numerica DIVIDE . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 62
+    terminal                       shift and go to state 25
+
+state 47
+
+    (29) expresion_numerica -> expresion_numerica MODULE . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_numerica             shift and go to state 63
+    terminal                       shift and go to state 25
+
+state 48
+
+    (24) expresion_numerica -> MINUS expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    MENOR           reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    MAYORI          reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    MENORI          reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    IGUAL           reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    DIFF            reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    PLUS            reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    MINUS           reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    TIMES           reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    DIVIDE          reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    MODULE          reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    AND             reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    OR              reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    SEMICOLON       reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+    RPAREN          reduce using rule 24 (expresion_numerica -> MINUS expresion_numerica .)
+
+  ! PLUS            [ shift and go to state 43 ]
+  ! MINUS           [ shift and go to state 44 ]
+  ! TIMES           [ shift and go to state 45 ]
+  ! DIVIDE          [ shift and go to state 46 ]
+  ! MODULE          [ shift and go to state 47 ]
+
+
+state 49
+
+    (8) print -> CONSOLE DOT LOG LPAREN expresion_logica . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 64
+
+
+state 50
+
+    (9) declare -> tipo_declaracion ID COLON tipo_dato ASIG . expresion_logica SEMICOLON
+    (13) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (14) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (15) expresion_logica -> . NOT expresion_relacional
+    (16) expresion_logica -> . expresion_relacional
+    (17) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (18) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (19) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (20) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (21) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (22) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (23) expresion_relacional -> . expresion_numerica
+    (24) expresion_numerica -> . MINUS expresion_numerica
+    (25) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (26) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (27) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (28) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (29) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (30) expresion_numerica -> . terminal
+    (31) terminal -> . TNUMBER
+    (32) terminal -> . TSTRING
+    (33) terminal -> . ID
+
+    NOT             shift and go to state 22
+    MINUS           shift and go to state 24
+    TNUMBER         shift and go to state 26
+    TSTRING         shift and go to state 27
+    ID              shift and go to state 19
+
+    expresion_logica               shift and go to state 65
+    expresion_relacional           shift and go to state 21
+    expresion_numerica             shift and go to state 23
+    terminal                       shift and go to state 25
+
+state 51
+
+    (13) expresion_logica -> expresion_relacional AND expresion_relacional .
+
+    SEMICOLON       reduce using rule 13 (expresion_logica -> expresion_relacional AND expresion_relacional .)
+    RPAREN          reduce using rule 13 (expresion_logica -> expresion_relacional AND expresion_relacional .)
+
+
+state 52
+
+    (14) expresion_logica -> expresion_relacional OR expresion_relacional .
+
+    SEMICOLON       reduce using rule 14 (expresion_logica -> expresion_relacional OR expresion_relacional .)
+    RPAREN          reduce using rule 14 (expresion_logica -> expresion_relacional OR expresion_relacional .)
+
+
+state 53
+
+    (17) expresion_relacional -> expresion_numerica MAYOR expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 17 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    OR              reduce using rule 17 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    SEMICOLON       reduce using rule 17 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    RPAREN          reduce using rule 17 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    PLUS            shift and go to state 43
+    MINUS           shift and go to state 44
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+
+state 54
+
+    (18) expresion_relacional -> expresion_numerica MENOR expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 18 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    OR              reduce using rule 18 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    SEMICOLON       reduce using rule 18 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    RPAREN          reduce using rule 18 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    PLUS            shift and go to state 43
+    MINUS           shift and go to state 44
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+
+state 55
+
+    (19) expresion_relacional -> expresion_numerica MAYORI expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 19 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    OR              reduce using rule 19 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    SEMICOLON       reduce using rule 19 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    RPAREN          reduce using rule 19 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    PLUS            shift and go to state 43
+    MINUS           shift and go to state 44
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+
+state 56
+
+    (20) expresion_relacional -> expresion_numerica MENORI expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 20 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    OR              reduce using rule 20 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    SEMICOLON       reduce using rule 20 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    RPAREN          reduce using rule 20 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    PLUS            shift and go to state 43
+    MINUS           shift and go to state 44
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+
+state 57
+
+    (21) expresion_relacional -> expresion_numerica IGUAL expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 21 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    OR              reduce using rule 21 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    SEMICOLON       reduce using rule 21 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    RPAREN          reduce using rule 21 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    PLUS            shift and go to state 43
+    MINUS           shift and go to state 44
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+
+state 58
+
+    (22) expresion_relacional -> expresion_numerica DIFF expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 22 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    OR              reduce using rule 22 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    SEMICOLON       reduce using rule 22 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    RPAREN          reduce using rule 22 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    PLUS            shift and go to state 43
+    MINUS           shift and go to state 44
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+
+state 59
+
+    (25) expresion_numerica -> expresion_numerica PLUS expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    MENOR           reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    MAYORI          reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    MENORI          reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    IGUAL           reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    DIFF            reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    PLUS            reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    MINUS           reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    AND             reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    OR              reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    SEMICOLON       reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    RPAREN          reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+  ! TIMES           [ reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .) ]
+  ! DIVIDE          [ reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .) ]
+  ! MODULE          [ reduce using rule 25 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .) ]
+  ! PLUS            [ shift and go to state 43 ]
+  ! MINUS           [ shift and go to state 44 ]
+
+
+state 60
+
+    (26) expresion_numerica -> expresion_numerica MINUS expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    MENOR           reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    MAYORI          reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    MENORI          reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    IGUAL           reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    DIFF            reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    PLUS            reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    MINUS           reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    AND             reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    OR              reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    SEMICOLON       reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    RPAREN          reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    TIMES           shift and go to state 45
+    DIVIDE          shift and go to state 46
+    MODULE          shift and go to state 47
+
+  ! TIMES           [ reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .) ]
+  ! DIVIDE          [ reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .) ]
+  ! MODULE          [ reduce using rule 26 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .) ]
+  ! PLUS            [ shift and go to state 43 ]
+  ! MINUS           [ shift and go to state 44 ]
+
+
+state 61
+
+    (27) expresion_numerica -> expresion_numerica TIMES expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MENOR           reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MAYORI          reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MENORI          reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    IGUAL           reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    DIFF            reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    PLUS            reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MINUS           reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    TIMES           reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    DIVIDE          reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MODULE          reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    AND             reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    OR              reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    SEMICOLON       reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    RPAREN          reduce using rule 27 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+
+  ! PLUS            [ shift and go to state 43 ]
+  ! MINUS           [ shift and go to state 44 ]
+  ! TIMES           [ shift and go to state 45 ]
+  ! DIVIDE          [ shift and go to state 46 ]
+  ! MODULE          [ shift and go to state 47 ]
+
+
+state 62
+
+    (28) expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MENOR           reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MAYORI          reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MENORI          reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    IGUAL           reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    DIFF            reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    PLUS            reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MINUS           reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    TIMES           reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    DIVIDE          reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MODULE          reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    AND             reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    OR              reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    SEMICOLON       reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    RPAREN          reduce using rule 28 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+
+  ! PLUS            [ shift and go to state 43 ]
+  ! MINUS           [ shift and go to state 44 ]
+  ! TIMES           [ shift and go to state 45 ]
+  ! DIVIDE          [ shift and go to state 46 ]
+  ! MODULE          [ shift and go to state 47 ]
+
+
+state 63
+
+    (29) expresion_numerica -> expresion_numerica MODULE expresion_numerica .
+    (25) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (26) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (27) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (28) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (29) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MENOR           reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MAYORI          reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MENORI          reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    IGUAL           reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    DIFF            reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    PLUS            reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MINUS           reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    TIMES           reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    DIVIDE          reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MODULE          reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    AND             reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    OR              reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    SEMICOLON       reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    RPAREN          reduce using rule 29 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+
+  ! PLUS            [ shift and go to state 43 ]
+  ! MINUS           [ shift and go to state 44 ]
+  ! TIMES           [ shift and go to state 45 ]
+  ! DIVIDE          [ shift and go to state 46 ]
+  ! MODULE          [ shift and go to state 47 ]
+
+
+state 64
+
+    (8) print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 66
+
+
+state 65
+
+    (9) declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica . SEMICOLON
+
+    SEMICOLON       shift and go to state 67
+
+
+state 66
+
+    (8) print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .
+
+    CONSOLE         reduce using rule 8 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    ID              reduce using rule 8 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    CONST           reduce using rule 8 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    VAR             reduce using rule 8 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    $end            reduce using rule 8 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+
+
+state 67
+
+    (9) declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .
+
+    CONSOLE         reduce using rule 9 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    ID              reduce using rule 9 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    CONST           reduce using rule 9 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    VAR             reduce using rule 9 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    $end            reduce using rule 9 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+
