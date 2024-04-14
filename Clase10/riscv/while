@@ -1,0 +1,25 @@
+.data
+msg1: .asciz "Número actual: %d\n"  # Esto no funcionará sin printf, entonces lo vamos a omitir.
+
+.text
+.globl main
+main:
+    li t1, 5        # Inicializa t1 = 5
+    li t2, 10       # Inicializa t2 = 10
+
+while_loop:
+    bge t1, t2, endwhile  # Sale del bucle si t1 >= t2
+    mv a0, t1              # Indica que queremos imprimir el valor de a1 como un entero
+    li a7, 1             # Código de syscall para imprimir enteros
+    ecall                 # Llama al sistema para imprimir
+    li a0, 10
+    li a7, 11
+    ecall
+
+    # Incrementar el contador
+    addi t1, t1, 1        # Incrementa t1
+    j while_loop          # Salta al inicio del bucle
+
+endwhile:
+    li a7, 10             # Código de syscall para finalizar el programa
+    ecall                 # Finaliza el programa

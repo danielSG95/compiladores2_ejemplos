@@ -1,0 +1,34 @@
+.data
+array:  .word 1, 2, 3, 4, 5   # Array de enteros
+length: .word 5               # Longitud del array
+
+.text
+.globl main
+main:
+    la a1, array             # Cargar dirección de base del array en a1
+    li a2, 0                 # Inicializar índice i = 0
+    li a3, 0                 # Inicializar sum = 0
+    lw a4, length            # Cargar la longitud del array en a4
+
+loop:
+    bge a2, a4, endloop      # Si i >= length, sal del bucle
+    slli a5, a2, 2           # Calcular el desplazamiento en bytes para array[i]
+    add a5, a1, a5           # Calcular la dirección de memoria de array[i]
+    lw a6, 0(a5)             # Cargar array[i] en a6
+    mv a0, a6
+    li a7, 1                # syscall para imprimir el entero en a0
+    ecall
+    li a0, 10
+    li a7, 11
+    ecall
+    add a3, a3, a6           # sum = sum + array[i]
+    addi a2, a2, 1           # Incrementar el índice i
+    j loop                   # Saltar de nuevo al inicio del bucle
+
+endloop:
+    # a3 contiene ahora la suma total
+    mv a0, a3                # Mover la suma total a a0 para imprimir
+    li a7, 1                 # syscall para imprimir el entero en a0
+    ecall
+    li a7, 10                # syscall para exit
+    ecall                    # Terminar el programa

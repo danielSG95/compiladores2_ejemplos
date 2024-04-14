@@ -1,0 +1,3395 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> init
+Rule 1     init -> instrucciones
+Rule 2     instrucciones -> instrucciones instruccion
+Rule 3     instrucciones -> instruccion
+Rule 4     instruccion -> instruccion_inline
+Rule 5     instruccion -> instruccion_bloque
+Rule 6     instruccion -> interface_definition
+Rule 7     interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+Rule 8     interface_props -> interface_props SEMICOLON ID COLON tipo_dato
+Rule 9     interface_props -> ID COLON tipo_dato
+Rule 10    instruccion_inline -> print
+Rule 11    instruccion_inline -> declare
+Rule 12    instruccion_inline -> asignacion
+Rule 13    instruccion_inline -> llamada SEMICOLON
+Rule 14    instruccion_inline -> retorno
+Rule 15    retorno -> RETURN expresion_logica SEMICOLON
+Rule 16    retorno -> RETURN SEMICOLON
+Rule 17    print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+Rule 18    declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+Rule 19    asignacion -> ID ASIG expresion_logica SEMICOLON
+Rule 20    tipo_declaracion -> CONST
+Rule 21    tipo_declaracion -> VAR
+Rule 22    instruccion_bloque -> instruccion_if
+Rule 23    instruccion_bloque -> instruccion_while
+Rule 24    instruccion_bloque -> declaracion_funcion
+Rule 25    instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux
+Rule 26    instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+Rule 27    instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+Rule 28    ifAux -> LLAVE_A instrucciones LLAVE_C
+Rule 29    instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+Rule 30    declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+Rule 31    params -> lparams
+Rule 32    params -> empty
+Rule 33    lparams -> lparams COMA param
+Rule 34    lparams -> param
+Rule 35    param -> expresion_logica COLON tipo_dato
+Rule 36    fretorno -> COLON tipo_dato
+Rule 37    fretorno -> empty
+Rule 38    expresion_logica -> expresion_relacional AND expresion_relacional
+Rule 39    expresion_logica -> expresion_relacional OR expresion_relacional
+Rule 40    expresion_logica -> NOT expresion_relacional
+Rule 41    expresion_logica -> expresion_relacional
+Rule 42    expresion_relacional -> expresion_numerica MAYOR expresion_numerica
+Rule 43    expresion_relacional -> expresion_numerica MENOR expresion_numerica
+Rule 44    expresion_relacional -> expresion_numerica MAYORI expresion_numerica
+Rule 45    expresion_relacional -> expresion_numerica MENORI expresion_numerica
+Rule 46    expresion_relacional -> expresion_numerica IGUAL expresion_numerica
+Rule 47    expresion_relacional -> expresion_numerica DIFF expresion_numerica
+Rule 48    expresion_relacional -> expresion_numerica
+Rule 49    expresion_numerica -> MINUS expresion_numerica
+Rule 50    expresion_numerica -> expresion_numerica PLUS expresion_numerica
+Rule 51    expresion_numerica -> expresion_numerica MINUS expresion_numerica
+Rule 52    expresion_numerica -> expresion_numerica TIMES expresion_numerica
+Rule 53    expresion_numerica -> expresion_numerica DIVIDE expresion_numerica
+Rule 54    expresion_numerica -> expresion_numerica MODULE expresion_numerica
+Rule 55    expresion_numerica -> terminal
+Rule 56    terminal -> TNUMBER
+Rule 57    terminal -> TSTRING
+Rule 58    terminal -> TRUE
+Rule 59    terminal -> FALSE
+Rule 60    terminal -> ID
+Rule 61    terminal -> llamada
+Rule 62    terminal -> LLAVE_A lvalues LLAVE_C
+Rule 63    terminal -> ID DOT ID
+Rule 64    lvalues -> lvalues COMA ID COLON expresion_logica
+Rule 65    lvalues -> ID COLON expresion_logica
+Rule 66    llamada -> ID LPAREN args RPAREN
+Rule 67    args -> lexpresiones
+Rule 68    args -> empty
+Rule 69    lexpresiones -> lexpresiones COMA expresion_logica
+Rule 70    lexpresiones -> expresion_logica
+Rule 71    tipo_dato -> STRING
+Rule 72    tipo_dato -> NUMBER
+Rule 73    tipo_dato -> BOOLEAN
+Rule 74    tipo_dato -> ID
+Rule 75    tipo_dato -> empty
+Rule 76    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 38
+ASIG                 : 18 19
+BOOLEAN              : 73
+COLON                : 8 9 18 35 36 64 65
+COMA                 : 33 64 69
+CONSOLE              : 17
+CONST                : 20
+DIFF                 : 47
+DIVIDE               : 53
+DOT                  : 17 63
+ELSE                 : 26 27
+FALSE                : 59
+FUNCTION             : 30
+ID                   : 7 8 9 18 19 30 60 63 63 64 65 66 74
+IF                   : 25 26 27
+IGUAL                : 46
+INTERFACE            : 7
+LLAVE_A              : 7 28 29 30 62
+LLAVE_C              : 7 28 29 30 62
+LOG                  : 17
+LPAREN               : 17 25 26 27 29 30 66
+MAYOR                : 42
+MAYORI               : 44
+MENOR                : 43
+MENORI               : 45
+MINUS                : 49 51
+MODULE               : 54
+NOT                  : 40
+NUMBER               : 72
+OR                   : 39
+PLUS                 : 50
+RETURN               : 15 16
+RPAREN               : 17 25 26 27 29 30 66
+SEMICOLON            : 7 8 13 15 16 17 18 19
+STRING               : 71
+TIMES                : 52
+TNUMBER              : 56
+TRUE                 : 58
+TSTRING              : 57
+VAR                  : 21
+WHILE                : 29
+error                : 
+
+Nonterminals, with rules where they appear
+
+args                 : 66
+asignacion           : 12
+declaracion_funcion  : 24
+declare              : 11
+empty                : 32 37 68 75
+expresion_logica     : 15 17 18 19 25 26 27 29 35 64 65 69 70
+expresion_numerica   : 42 42 43 43 44 44 45 45 46 46 47 47 48 49 50 50 51 51 52 52 53 53 54 54
+expresion_relacional : 38 38 39 39 40 41
+fretorno             : 30
+ifAux                : 25 26 27 27
+init                 : 0
+instruccion          : 2 3
+instruccion_bloque   : 5
+instruccion_if       : 22 26
+instruccion_inline   : 4
+instruccion_while    : 23
+instrucciones        : 1 2 28 29 30
+interface_definition : 6
+interface_props      : 7 8
+lexpresiones         : 67 69
+llamada              : 13 61
+lparams              : 31 33
+lvalues              : 62 64
+param                : 33 34
+params               : 30
+print                : 10
+retorno              : 14
+terminal             : 55
+tipo_dato            : 8 9 18 35 36
+tipo_declaracion     : 18
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . init
+    (1) init -> . instrucciones
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instrucciones -> . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion -> . instruccion_bloque
+    (6) instruccion -> . interface_definition
+    (10) instruccion_inline -> . print
+    (11) instruccion_inline -> . declare
+    (12) instruccion_inline -> . asignacion
+    (13) instruccion_inline -> . llamada SEMICOLON
+    (14) instruccion_inline -> . retorno
+    (22) instruccion_bloque -> . instruccion_if
+    (23) instruccion_bloque -> . instruccion_while
+    (24) instruccion_bloque -> . declaracion_funcion
+    (7) interface_definition -> . INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+    (17) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (18) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (19) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (66) llamada -> . ID LPAREN args RPAREN
+    (15) retorno -> . RETURN expresion_logica SEMICOLON
+    (16) retorno -> . RETURN SEMICOLON
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (29) instruccion_while -> . WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (30) declaracion_funcion -> . FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (20) tipo_declaracion -> . CONST
+    (21) tipo_declaracion -> . VAR
+
+    INTERFACE       shift and go to state 15
+    CONSOLE         shift and go to state 17
+    ID              shift and go to state 16
+    RETURN          shift and go to state 19
+    IF              shift and go to state 20
+    WHILE           shift and go to state 21
+    FUNCTION        shift and go to state 22
+    CONST           shift and go to state 23
+    VAR             shift and go to state 24
+
+    init                           shift and go to state 1
+    instrucciones                  shift and go to state 2
+    instruccion                    shift and go to state 3
+    instruccion_inline             shift and go to state 4
+    instruccion_bloque             shift and go to state 5
+    interface_definition           shift and go to state 6
+    print                          shift and go to state 7
+    declare                        shift and go to state 8
+    asignacion                     shift and go to state 9
+    llamada                        shift and go to state 10
+    retorno                        shift and go to state 11
+    instruccion_if                 shift and go to state 12
+    instruccion_while              shift and go to state 13
+    declaracion_funcion            shift and go to state 14
+    tipo_declaracion               shift and go to state 18
+
+state 1
+
+    (0) S' -> init .
+
+
+
+state 2
+
+    (1) init -> instrucciones .
+    (2) instrucciones -> instrucciones . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion -> . instruccion_bloque
+    (6) instruccion -> . interface_definition
+    (10) instruccion_inline -> . print
+    (11) instruccion_inline -> . declare
+    (12) instruccion_inline -> . asignacion
+    (13) instruccion_inline -> . llamada SEMICOLON
+    (14) instruccion_inline -> . retorno
+    (22) instruccion_bloque -> . instruccion_if
+    (23) instruccion_bloque -> . instruccion_while
+    (24) instruccion_bloque -> . declaracion_funcion
+    (7) interface_definition -> . INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+    (17) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (18) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (19) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (66) llamada -> . ID LPAREN args RPAREN
+    (15) retorno -> . RETURN expresion_logica SEMICOLON
+    (16) retorno -> . RETURN SEMICOLON
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (29) instruccion_while -> . WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (30) declaracion_funcion -> . FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (20) tipo_declaracion -> . CONST
+    (21) tipo_declaracion -> . VAR
+
+    $end            reduce using rule 1 (init -> instrucciones .)
+    INTERFACE       shift and go to state 15
+    CONSOLE         shift and go to state 17
+    ID              shift and go to state 16
+    RETURN          shift and go to state 19
+    IF              shift and go to state 20
+    WHILE           shift and go to state 21
+    FUNCTION        shift and go to state 22
+    CONST           shift and go to state 23
+    VAR             shift and go to state 24
+
+    instruccion                    shift and go to state 25
+    instruccion_inline             shift and go to state 4
+    instruccion_bloque             shift and go to state 5
+    interface_definition           shift and go to state 6
+    print                          shift and go to state 7
+    declare                        shift and go to state 8
+    asignacion                     shift and go to state 9
+    llamada                        shift and go to state 10
+    retorno                        shift and go to state 11
+    instruccion_if                 shift and go to state 12
+    instruccion_while              shift and go to state 13
+    declaracion_funcion            shift and go to state 14
+    tipo_declaracion               shift and go to state 18
+
+state 3
+
+    (3) instrucciones -> instruccion .
+
+    INTERFACE       reduce using rule 3 (instrucciones -> instruccion .)
+    CONSOLE         reduce using rule 3 (instrucciones -> instruccion .)
+    ID              reduce using rule 3 (instrucciones -> instruccion .)
+    RETURN          reduce using rule 3 (instrucciones -> instruccion .)
+    IF              reduce using rule 3 (instrucciones -> instruccion .)
+    WHILE           reduce using rule 3 (instrucciones -> instruccion .)
+    FUNCTION        reduce using rule 3 (instrucciones -> instruccion .)
+    CONST           reduce using rule 3 (instrucciones -> instruccion .)
+    VAR             reduce using rule 3 (instrucciones -> instruccion .)
+    $end            reduce using rule 3 (instrucciones -> instruccion .)
+    LLAVE_C         reduce using rule 3 (instrucciones -> instruccion .)
+
+
+state 4
+
+    (4) instruccion -> instruccion_inline .
+
+    INTERFACE       reduce using rule 4 (instruccion -> instruccion_inline .)
+    CONSOLE         reduce using rule 4 (instruccion -> instruccion_inline .)
+    ID              reduce using rule 4 (instruccion -> instruccion_inline .)
+    RETURN          reduce using rule 4 (instruccion -> instruccion_inline .)
+    IF              reduce using rule 4 (instruccion -> instruccion_inline .)
+    WHILE           reduce using rule 4 (instruccion -> instruccion_inline .)
+    FUNCTION        reduce using rule 4 (instruccion -> instruccion_inline .)
+    CONST           reduce using rule 4 (instruccion -> instruccion_inline .)
+    VAR             reduce using rule 4 (instruccion -> instruccion_inline .)
+    $end            reduce using rule 4 (instruccion -> instruccion_inline .)
+    LLAVE_C         reduce using rule 4 (instruccion -> instruccion_inline .)
+
+
+state 5
+
+    (5) instruccion -> instruccion_bloque .
+
+    INTERFACE       reduce using rule 5 (instruccion -> instruccion_bloque .)
+    CONSOLE         reduce using rule 5 (instruccion -> instruccion_bloque .)
+    ID              reduce using rule 5 (instruccion -> instruccion_bloque .)
+    RETURN          reduce using rule 5 (instruccion -> instruccion_bloque .)
+    IF              reduce using rule 5 (instruccion -> instruccion_bloque .)
+    WHILE           reduce using rule 5 (instruccion -> instruccion_bloque .)
+    FUNCTION        reduce using rule 5 (instruccion -> instruccion_bloque .)
+    CONST           reduce using rule 5 (instruccion -> instruccion_bloque .)
+    VAR             reduce using rule 5 (instruccion -> instruccion_bloque .)
+    $end            reduce using rule 5 (instruccion -> instruccion_bloque .)
+    LLAVE_C         reduce using rule 5 (instruccion -> instruccion_bloque .)
+
+
+state 6
+
+    (6) instruccion -> interface_definition .
+
+    INTERFACE       reduce using rule 6 (instruccion -> interface_definition .)
+    CONSOLE         reduce using rule 6 (instruccion -> interface_definition .)
+    ID              reduce using rule 6 (instruccion -> interface_definition .)
+    RETURN          reduce using rule 6 (instruccion -> interface_definition .)
+    IF              reduce using rule 6 (instruccion -> interface_definition .)
+    WHILE           reduce using rule 6 (instruccion -> interface_definition .)
+    FUNCTION        reduce using rule 6 (instruccion -> interface_definition .)
+    CONST           reduce using rule 6 (instruccion -> interface_definition .)
+    VAR             reduce using rule 6 (instruccion -> interface_definition .)
+    $end            reduce using rule 6 (instruccion -> interface_definition .)
+    LLAVE_C         reduce using rule 6 (instruccion -> interface_definition .)
+
+
+state 7
+
+    (10) instruccion_inline -> print .
+
+    INTERFACE       reduce using rule 10 (instruccion_inline -> print .)
+    CONSOLE         reduce using rule 10 (instruccion_inline -> print .)
+    ID              reduce using rule 10 (instruccion_inline -> print .)
+    RETURN          reduce using rule 10 (instruccion_inline -> print .)
+    IF              reduce using rule 10 (instruccion_inline -> print .)
+    WHILE           reduce using rule 10 (instruccion_inline -> print .)
+    FUNCTION        reduce using rule 10 (instruccion_inline -> print .)
+    CONST           reduce using rule 10 (instruccion_inline -> print .)
+    VAR             reduce using rule 10 (instruccion_inline -> print .)
+    $end            reduce using rule 10 (instruccion_inline -> print .)
+    LLAVE_C         reduce using rule 10 (instruccion_inline -> print .)
+
+
+state 8
+
+    (11) instruccion_inline -> declare .
+
+    INTERFACE       reduce using rule 11 (instruccion_inline -> declare .)
+    CONSOLE         reduce using rule 11 (instruccion_inline -> declare .)
+    ID              reduce using rule 11 (instruccion_inline -> declare .)
+    RETURN          reduce using rule 11 (instruccion_inline -> declare .)
+    IF              reduce using rule 11 (instruccion_inline -> declare .)
+    WHILE           reduce using rule 11 (instruccion_inline -> declare .)
+    FUNCTION        reduce using rule 11 (instruccion_inline -> declare .)
+    CONST           reduce using rule 11 (instruccion_inline -> declare .)
+    VAR             reduce using rule 11 (instruccion_inline -> declare .)
+    $end            reduce using rule 11 (instruccion_inline -> declare .)
+    LLAVE_C         reduce using rule 11 (instruccion_inline -> declare .)
+
+
+state 9
+
+    (12) instruccion_inline -> asignacion .
+
+    INTERFACE       reduce using rule 12 (instruccion_inline -> asignacion .)
+    CONSOLE         reduce using rule 12 (instruccion_inline -> asignacion .)
+    ID              reduce using rule 12 (instruccion_inline -> asignacion .)
+    RETURN          reduce using rule 12 (instruccion_inline -> asignacion .)
+    IF              reduce using rule 12 (instruccion_inline -> asignacion .)
+    WHILE           reduce using rule 12 (instruccion_inline -> asignacion .)
+    FUNCTION        reduce using rule 12 (instruccion_inline -> asignacion .)
+    CONST           reduce using rule 12 (instruccion_inline -> asignacion .)
+    VAR             reduce using rule 12 (instruccion_inline -> asignacion .)
+    $end            reduce using rule 12 (instruccion_inline -> asignacion .)
+    LLAVE_C         reduce using rule 12 (instruccion_inline -> asignacion .)
+
+
+state 10
+
+    (13) instruccion_inline -> llamada . SEMICOLON
+
+    SEMICOLON       shift and go to state 26
+
+
+state 11
+
+    (14) instruccion_inline -> retorno .
+
+    INTERFACE       reduce using rule 14 (instruccion_inline -> retorno .)
+    CONSOLE         reduce using rule 14 (instruccion_inline -> retorno .)
+    ID              reduce using rule 14 (instruccion_inline -> retorno .)
+    RETURN          reduce using rule 14 (instruccion_inline -> retorno .)
+    IF              reduce using rule 14 (instruccion_inline -> retorno .)
+    WHILE           reduce using rule 14 (instruccion_inline -> retorno .)
+    FUNCTION        reduce using rule 14 (instruccion_inline -> retorno .)
+    CONST           reduce using rule 14 (instruccion_inline -> retorno .)
+    VAR             reduce using rule 14 (instruccion_inline -> retorno .)
+    $end            reduce using rule 14 (instruccion_inline -> retorno .)
+    LLAVE_C         reduce using rule 14 (instruccion_inline -> retorno .)
+
+
+state 12
+
+    (22) instruccion_bloque -> instruccion_if .
+
+    INTERFACE       reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    CONSOLE         reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    ID              reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    RETURN          reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    IF              reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    WHILE           reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    FUNCTION        reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    CONST           reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    VAR             reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    $end            reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+    LLAVE_C         reduce using rule 22 (instruccion_bloque -> instruccion_if .)
+
+
+state 13
+
+    (23) instruccion_bloque -> instruccion_while .
+
+    INTERFACE       reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    CONSOLE         reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    ID              reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    RETURN          reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    IF              reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    WHILE           reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    FUNCTION        reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    CONST           reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    VAR             reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    $end            reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+    LLAVE_C         reduce using rule 23 (instruccion_bloque -> instruccion_while .)
+
+
+state 14
+
+    (24) instruccion_bloque -> declaracion_funcion .
+
+    INTERFACE       reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    CONSOLE         reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    ID              reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    RETURN          reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    IF              reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    WHILE           reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    FUNCTION        reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    CONST           reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    VAR             reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    $end            reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+    LLAVE_C         reduce using rule 24 (instruccion_bloque -> declaracion_funcion .)
+
+
+state 15
+
+    (7) interface_definition -> INTERFACE . ID LLAVE_A interface_props SEMICOLON LLAVE_C
+
+    ID              shift and go to state 27
+
+
+state 16
+
+    (19) asignacion -> ID . ASIG expresion_logica SEMICOLON
+    (66) llamada -> ID . LPAREN args RPAREN
+
+    ASIG            shift and go to state 28
+    LPAREN          shift and go to state 29
+
+
+state 17
+
+    (17) print -> CONSOLE . DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+
+    DOT             shift and go to state 30
+
+
+state 18
+
+    (18) declare -> tipo_declaracion . ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+
+    ID              shift and go to state 31
+
+
+state 19
+
+    (15) retorno -> RETURN . expresion_logica SEMICOLON
+    (16) retorno -> RETURN . SEMICOLON
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    SEMICOLON       shift and go to state 33
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 32
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 20
+
+    (25) instruccion_if -> IF . LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> IF . LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> IF . LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+
+    LPAREN          shift and go to state 46
+
+
+state 21
+
+    (29) instruccion_while -> WHILE . LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+
+    LPAREN          shift and go to state 47
+
+
+state 22
+
+    (30) declaracion_funcion -> FUNCTION . ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+
+    ID              shift and go to state 48
+
+
+state 23
+
+    (20) tipo_declaracion -> CONST .
+
+    ID              reduce using rule 20 (tipo_declaracion -> CONST .)
+
+
+state 24
+
+    (21) tipo_declaracion -> VAR .
+
+    ID              reduce using rule 21 (tipo_declaracion -> VAR .)
+
+
+state 25
+
+    (2) instrucciones -> instrucciones instruccion .
+
+    INTERFACE       reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    CONSOLE         reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    ID              reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    RETURN          reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    IF              reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    WHILE           reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    FUNCTION        reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    CONST           reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    VAR             reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    LLAVE_C         reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+
+
+state 26
+
+    (13) instruccion_inline -> llamada SEMICOLON .
+
+    INTERFACE       reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    CONSOLE         reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    ID              reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    RETURN          reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    IF              reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    WHILE           reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    FUNCTION        reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    CONST           reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    VAR             reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    $end            reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+    LLAVE_C         reduce using rule 13 (instruccion_inline -> llamada SEMICOLON .)
+
+
+state 27
+
+    (7) interface_definition -> INTERFACE ID . LLAVE_A interface_props SEMICOLON LLAVE_C
+
+    LLAVE_A         shift and go to state 49
+
+
+state 28
+
+    (19) asignacion -> ID ASIG . expresion_logica SEMICOLON
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 50
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 29
+
+    (66) llamada -> ID LPAREN . args RPAREN
+    (67) args -> . lexpresiones
+    (68) args -> . empty
+    (69) lexpresiones -> . lexpresiones COMA expresion_logica
+    (70) lexpresiones -> . expresion_logica
+    (76) empty -> .
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    RPAREN          reduce using rule 76 (empty -> .)
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    args                           shift and go to state 51
+    lexpresiones                   shift and go to state 52
+    empty                          shift and go to state 53
+    expresion_logica               shift and go to state 54
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 30
+
+    (17) print -> CONSOLE DOT . LOG LPAREN expresion_logica RPAREN SEMICOLON
+
+    LOG             shift and go to state 55
+
+
+state 31
+
+    (18) declare -> tipo_declaracion ID . COLON tipo_dato ASIG expresion_logica SEMICOLON
+
+    COLON           shift and go to state 56
+
+
+state 32
+
+    (15) retorno -> RETURN expresion_logica . SEMICOLON
+
+    SEMICOLON       shift and go to state 57
+
+
+state 33
+
+    (16) retorno -> RETURN SEMICOLON .
+
+    INTERFACE       reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    CONSOLE         reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    ID              reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    RETURN          reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    IF              reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    WHILE           reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    FUNCTION        reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    CONST           reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    VAR             reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    $end            reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+    LLAVE_C         reduce using rule 16 (retorno -> RETURN SEMICOLON .)
+
+
+state 34
+
+    (38) expresion_logica -> expresion_relacional . AND expresion_relacional
+    (39) expresion_logica -> expresion_relacional . OR expresion_relacional
+    (41) expresion_logica -> expresion_relacional .
+
+    AND             shift and go to state 58
+    OR              shift and go to state 59
+    SEMICOLON       reduce using rule 41 (expresion_logica -> expresion_relacional .)
+    COMA            reduce using rule 41 (expresion_logica -> expresion_relacional .)
+    RPAREN          reduce using rule 41 (expresion_logica -> expresion_relacional .)
+    COLON           reduce using rule 41 (expresion_logica -> expresion_relacional .)
+    LLAVE_C         reduce using rule 41 (expresion_logica -> expresion_relacional .)
+
+
+state 35
+
+    (40) expresion_logica -> NOT . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_relacional           shift and go to state 60
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 36
+
+    (42) expresion_relacional -> expresion_numerica . MAYOR expresion_numerica
+    (43) expresion_relacional -> expresion_numerica . MENOR expresion_numerica
+    (44) expresion_relacional -> expresion_numerica . MAYORI expresion_numerica
+    (45) expresion_relacional -> expresion_numerica . MENORI expresion_numerica
+    (46) expresion_relacional -> expresion_numerica . IGUAL expresion_numerica
+    (47) expresion_relacional -> expresion_numerica . DIFF expresion_numerica
+    (48) expresion_relacional -> expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           shift and go to state 61
+    MENOR           shift and go to state 62
+    MAYORI          shift and go to state 63
+    MENORI          shift and go to state 64
+    IGUAL           shift and go to state 65
+    DIFF            shift and go to state 66
+    AND             reduce using rule 48 (expresion_relacional -> expresion_numerica .)
+    OR              reduce using rule 48 (expresion_relacional -> expresion_numerica .)
+    SEMICOLON       reduce using rule 48 (expresion_relacional -> expresion_numerica .)
+    COMA            reduce using rule 48 (expresion_relacional -> expresion_numerica .)
+    RPAREN          reduce using rule 48 (expresion_relacional -> expresion_numerica .)
+    COLON           reduce using rule 48 (expresion_relacional -> expresion_numerica .)
+    LLAVE_C         reduce using rule 48 (expresion_relacional -> expresion_numerica .)
+    PLUS            shift and go to state 67
+    MINUS           shift and go to state 68
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+
+state 37
+
+    (49) expresion_numerica -> MINUS . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 72
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 38
+
+    (55) expresion_numerica -> terminal .
+
+    MAYOR           reduce using rule 55 (expresion_numerica -> terminal .)
+    MENOR           reduce using rule 55 (expresion_numerica -> terminal .)
+    MAYORI          reduce using rule 55 (expresion_numerica -> terminal .)
+    MENORI          reduce using rule 55 (expresion_numerica -> terminal .)
+    IGUAL           reduce using rule 55 (expresion_numerica -> terminal .)
+    DIFF            reduce using rule 55 (expresion_numerica -> terminal .)
+    PLUS            reduce using rule 55 (expresion_numerica -> terminal .)
+    MINUS           reduce using rule 55 (expresion_numerica -> terminal .)
+    TIMES           reduce using rule 55 (expresion_numerica -> terminal .)
+    DIVIDE          reduce using rule 55 (expresion_numerica -> terminal .)
+    MODULE          reduce using rule 55 (expresion_numerica -> terminal .)
+    AND             reduce using rule 55 (expresion_numerica -> terminal .)
+    OR              reduce using rule 55 (expresion_numerica -> terminal .)
+    SEMICOLON       reduce using rule 55 (expresion_numerica -> terminal .)
+    COMA            reduce using rule 55 (expresion_numerica -> terminal .)
+    RPAREN          reduce using rule 55 (expresion_numerica -> terminal .)
+    COLON           reduce using rule 55 (expresion_numerica -> terminal .)
+    LLAVE_C         reduce using rule 55 (expresion_numerica -> terminal .)
+
+
+state 39
+
+    (56) terminal -> TNUMBER .
+
+    MAYOR           reduce using rule 56 (terminal -> TNUMBER .)
+    MENOR           reduce using rule 56 (terminal -> TNUMBER .)
+    MAYORI          reduce using rule 56 (terminal -> TNUMBER .)
+    MENORI          reduce using rule 56 (terminal -> TNUMBER .)
+    IGUAL           reduce using rule 56 (terminal -> TNUMBER .)
+    DIFF            reduce using rule 56 (terminal -> TNUMBER .)
+    PLUS            reduce using rule 56 (terminal -> TNUMBER .)
+    MINUS           reduce using rule 56 (terminal -> TNUMBER .)
+    TIMES           reduce using rule 56 (terminal -> TNUMBER .)
+    DIVIDE          reduce using rule 56 (terminal -> TNUMBER .)
+    MODULE          reduce using rule 56 (terminal -> TNUMBER .)
+    AND             reduce using rule 56 (terminal -> TNUMBER .)
+    OR              reduce using rule 56 (terminal -> TNUMBER .)
+    SEMICOLON       reduce using rule 56 (terminal -> TNUMBER .)
+    COMA            reduce using rule 56 (terminal -> TNUMBER .)
+    RPAREN          reduce using rule 56 (terminal -> TNUMBER .)
+    COLON           reduce using rule 56 (terminal -> TNUMBER .)
+    LLAVE_C         reduce using rule 56 (terminal -> TNUMBER .)
+
+
+state 40
+
+    (57) terminal -> TSTRING .
+
+    MAYOR           reduce using rule 57 (terminal -> TSTRING .)
+    MENOR           reduce using rule 57 (terminal -> TSTRING .)
+    MAYORI          reduce using rule 57 (terminal -> TSTRING .)
+    MENORI          reduce using rule 57 (terminal -> TSTRING .)
+    IGUAL           reduce using rule 57 (terminal -> TSTRING .)
+    DIFF            reduce using rule 57 (terminal -> TSTRING .)
+    PLUS            reduce using rule 57 (terminal -> TSTRING .)
+    MINUS           reduce using rule 57 (terminal -> TSTRING .)
+    TIMES           reduce using rule 57 (terminal -> TSTRING .)
+    DIVIDE          reduce using rule 57 (terminal -> TSTRING .)
+    MODULE          reduce using rule 57 (terminal -> TSTRING .)
+    AND             reduce using rule 57 (terminal -> TSTRING .)
+    OR              reduce using rule 57 (terminal -> TSTRING .)
+    SEMICOLON       reduce using rule 57 (terminal -> TSTRING .)
+    COMA            reduce using rule 57 (terminal -> TSTRING .)
+    RPAREN          reduce using rule 57 (terminal -> TSTRING .)
+    COLON           reduce using rule 57 (terminal -> TSTRING .)
+    LLAVE_C         reduce using rule 57 (terminal -> TSTRING .)
+
+
+state 41
+
+    (58) terminal -> TRUE .
+
+    MAYOR           reduce using rule 58 (terminal -> TRUE .)
+    MENOR           reduce using rule 58 (terminal -> TRUE .)
+    MAYORI          reduce using rule 58 (terminal -> TRUE .)
+    MENORI          reduce using rule 58 (terminal -> TRUE .)
+    IGUAL           reduce using rule 58 (terminal -> TRUE .)
+    DIFF            reduce using rule 58 (terminal -> TRUE .)
+    PLUS            reduce using rule 58 (terminal -> TRUE .)
+    MINUS           reduce using rule 58 (terminal -> TRUE .)
+    TIMES           reduce using rule 58 (terminal -> TRUE .)
+    DIVIDE          reduce using rule 58 (terminal -> TRUE .)
+    MODULE          reduce using rule 58 (terminal -> TRUE .)
+    AND             reduce using rule 58 (terminal -> TRUE .)
+    OR              reduce using rule 58 (terminal -> TRUE .)
+    SEMICOLON       reduce using rule 58 (terminal -> TRUE .)
+    COMA            reduce using rule 58 (terminal -> TRUE .)
+    RPAREN          reduce using rule 58 (terminal -> TRUE .)
+    COLON           reduce using rule 58 (terminal -> TRUE .)
+    LLAVE_C         reduce using rule 58 (terminal -> TRUE .)
+
+
+state 42
+
+    (59) terminal -> FALSE .
+
+    MAYOR           reduce using rule 59 (terminal -> FALSE .)
+    MENOR           reduce using rule 59 (terminal -> FALSE .)
+    MAYORI          reduce using rule 59 (terminal -> FALSE .)
+    MENORI          reduce using rule 59 (terminal -> FALSE .)
+    IGUAL           reduce using rule 59 (terminal -> FALSE .)
+    DIFF            reduce using rule 59 (terminal -> FALSE .)
+    PLUS            reduce using rule 59 (terminal -> FALSE .)
+    MINUS           reduce using rule 59 (terminal -> FALSE .)
+    TIMES           reduce using rule 59 (terminal -> FALSE .)
+    DIVIDE          reduce using rule 59 (terminal -> FALSE .)
+    MODULE          reduce using rule 59 (terminal -> FALSE .)
+    AND             reduce using rule 59 (terminal -> FALSE .)
+    OR              reduce using rule 59 (terminal -> FALSE .)
+    SEMICOLON       reduce using rule 59 (terminal -> FALSE .)
+    COMA            reduce using rule 59 (terminal -> FALSE .)
+    RPAREN          reduce using rule 59 (terminal -> FALSE .)
+    COLON           reduce using rule 59 (terminal -> FALSE .)
+    LLAVE_C         reduce using rule 59 (terminal -> FALSE .)
+
+
+state 43
+
+    (60) terminal -> ID .
+    (63) terminal -> ID . DOT ID
+    (66) llamada -> ID . LPAREN args RPAREN
+
+    MAYOR           reduce using rule 60 (terminal -> ID .)
+    MENOR           reduce using rule 60 (terminal -> ID .)
+    MAYORI          reduce using rule 60 (terminal -> ID .)
+    MENORI          reduce using rule 60 (terminal -> ID .)
+    IGUAL           reduce using rule 60 (terminal -> ID .)
+    DIFF            reduce using rule 60 (terminal -> ID .)
+    PLUS            reduce using rule 60 (terminal -> ID .)
+    MINUS           reduce using rule 60 (terminal -> ID .)
+    TIMES           reduce using rule 60 (terminal -> ID .)
+    DIVIDE          reduce using rule 60 (terminal -> ID .)
+    MODULE          reduce using rule 60 (terminal -> ID .)
+    AND             reduce using rule 60 (terminal -> ID .)
+    OR              reduce using rule 60 (terminal -> ID .)
+    SEMICOLON       reduce using rule 60 (terminal -> ID .)
+    COMA            reduce using rule 60 (terminal -> ID .)
+    RPAREN          reduce using rule 60 (terminal -> ID .)
+    COLON           reduce using rule 60 (terminal -> ID .)
+    LLAVE_C         reduce using rule 60 (terminal -> ID .)
+    DOT             shift and go to state 73
+    LPAREN          shift and go to state 29
+
+
+state 44
+
+    (61) terminal -> llamada .
+
+    MAYOR           reduce using rule 61 (terminal -> llamada .)
+    MENOR           reduce using rule 61 (terminal -> llamada .)
+    MAYORI          reduce using rule 61 (terminal -> llamada .)
+    MENORI          reduce using rule 61 (terminal -> llamada .)
+    IGUAL           reduce using rule 61 (terminal -> llamada .)
+    DIFF            reduce using rule 61 (terminal -> llamada .)
+    PLUS            reduce using rule 61 (terminal -> llamada .)
+    MINUS           reduce using rule 61 (terminal -> llamada .)
+    TIMES           reduce using rule 61 (terminal -> llamada .)
+    DIVIDE          reduce using rule 61 (terminal -> llamada .)
+    MODULE          reduce using rule 61 (terminal -> llamada .)
+    AND             reduce using rule 61 (terminal -> llamada .)
+    OR              reduce using rule 61 (terminal -> llamada .)
+    SEMICOLON       reduce using rule 61 (terminal -> llamada .)
+    COMA            reduce using rule 61 (terminal -> llamada .)
+    RPAREN          reduce using rule 61 (terminal -> llamada .)
+    COLON           reduce using rule 61 (terminal -> llamada .)
+    LLAVE_C         reduce using rule 61 (terminal -> llamada .)
+
+
+state 45
+
+    (62) terminal -> LLAVE_A . lvalues LLAVE_C
+    (64) lvalues -> . lvalues COMA ID COLON expresion_logica
+    (65) lvalues -> . ID COLON expresion_logica
+
+    ID              shift and go to state 75
+
+    lvalues                        shift and go to state 74
+
+state 46
+
+    (25) instruccion_if -> IF LPAREN . expresion_logica RPAREN ifAux
+    (26) instruccion_if -> IF LPAREN . expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> IF LPAREN . expresion_logica RPAREN ifAux ELSE ifAux
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 76
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 47
+
+    (29) instruccion_while -> WHILE LPAREN . expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 77
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 48
+
+    (30) declaracion_funcion -> FUNCTION ID . LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+
+    LPAREN          shift and go to state 78
+
+
+state 49
+
+    (7) interface_definition -> INTERFACE ID LLAVE_A . interface_props SEMICOLON LLAVE_C
+    (8) interface_props -> . interface_props SEMICOLON ID COLON tipo_dato
+    (9) interface_props -> . ID COLON tipo_dato
+
+    ID              shift and go to state 79
+
+    interface_props                shift and go to state 80
+
+state 50
+
+    (19) asignacion -> ID ASIG expresion_logica . SEMICOLON
+
+    SEMICOLON       shift and go to state 81
+
+
+state 51
+
+    (66) llamada -> ID LPAREN args . RPAREN
+
+    RPAREN          shift and go to state 82
+
+
+state 52
+
+    (67) args -> lexpresiones .
+    (69) lexpresiones -> lexpresiones . COMA expresion_logica
+
+    RPAREN          reduce using rule 67 (args -> lexpresiones .)
+    COMA            shift and go to state 83
+
+
+state 53
+
+    (68) args -> empty .
+
+    RPAREN          reduce using rule 68 (args -> empty .)
+
+
+state 54
+
+    (70) lexpresiones -> expresion_logica .
+
+    COMA            reduce using rule 70 (lexpresiones -> expresion_logica .)
+    RPAREN          reduce using rule 70 (lexpresiones -> expresion_logica .)
+
+
+state 55
+
+    (17) print -> CONSOLE DOT LOG . LPAREN expresion_logica RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 84
+
+
+state 56
+
+    (18) declare -> tipo_declaracion ID COLON . tipo_dato ASIG expresion_logica SEMICOLON
+    (71) tipo_dato -> . STRING
+    (72) tipo_dato -> . NUMBER
+    (73) tipo_dato -> . BOOLEAN
+    (74) tipo_dato -> . ID
+    (75) tipo_dato -> . empty
+    (76) empty -> .
+
+    STRING          shift and go to state 87
+    NUMBER          shift and go to state 88
+    BOOLEAN         shift and go to state 89
+    ID              shift and go to state 85
+    ASIG            reduce using rule 76 (empty -> .)
+
+    tipo_dato                      shift and go to state 86
+    empty                          shift and go to state 90
+
+state 57
+
+    (15) retorno -> RETURN expresion_logica SEMICOLON .
+
+    INTERFACE       reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    CONSOLE         reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    ID              reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    RETURN          reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    IF              reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    WHILE           reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    FUNCTION        reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    CONST           reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    VAR             reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    $end            reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+    LLAVE_C         reduce using rule 15 (retorno -> RETURN expresion_logica SEMICOLON .)
+
+
+state 58
+
+    (38) expresion_logica -> expresion_relacional AND . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_relacional           shift and go to state 91
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 59
+
+    (39) expresion_logica -> expresion_relacional OR . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_relacional           shift and go to state 92
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 60
+
+    (40) expresion_logica -> NOT expresion_relacional .
+
+    SEMICOLON       reduce using rule 40 (expresion_logica -> NOT expresion_relacional .)
+    COMA            reduce using rule 40 (expresion_logica -> NOT expresion_relacional .)
+    RPAREN          reduce using rule 40 (expresion_logica -> NOT expresion_relacional .)
+    COLON           reduce using rule 40 (expresion_logica -> NOT expresion_relacional .)
+    LLAVE_C         reduce using rule 40 (expresion_logica -> NOT expresion_relacional .)
+
+
+state 61
+
+    (42) expresion_relacional -> expresion_numerica MAYOR . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 93
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 62
+
+    (43) expresion_relacional -> expresion_numerica MENOR . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 94
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 63
+
+    (44) expresion_relacional -> expresion_numerica MAYORI . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 95
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 64
+
+    (45) expresion_relacional -> expresion_numerica MENORI . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 96
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 65
+
+    (46) expresion_relacional -> expresion_numerica IGUAL . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 97
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 66
+
+    (47) expresion_relacional -> expresion_numerica DIFF . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 98
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 67
+
+    (50) expresion_numerica -> expresion_numerica PLUS . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 99
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 68
+
+    (51) expresion_numerica -> expresion_numerica MINUS . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 100
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 69
+
+    (52) expresion_numerica -> expresion_numerica TIMES . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 101
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 70
+
+    (53) expresion_numerica -> expresion_numerica DIVIDE . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 102
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 71
+
+    (54) expresion_numerica -> expresion_numerica MODULE . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_numerica             shift and go to state 103
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 72
+
+    (49) expresion_numerica -> MINUS expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    MENOR           reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    MAYORI          reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    MENORI          reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    IGUAL           reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    DIFF            reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    PLUS            reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    MINUS           reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    TIMES           reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    DIVIDE          reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    MODULE          reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    AND             reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    OR              reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    SEMICOLON       reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    COMA            reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    RPAREN          reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    COLON           reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+    LLAVE_C         reduce using rule 49 (expresion_numerica -> MINUS expresion_numerica .)
+
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MODULE          [ shift and go to state 71 ]
+
+
+state 73
+
+    (63) terminal -> ID DOT . ID
+
+    ID              shift and go to state 104
+
+
+state 74
+
+    (62) terminal -> LLAVE_A lvalues . LLAVE_C
+    (64) lvalues -> lvalues . COMA ID COLON expresion_logica
+
+    LLAVE_C         shift and go to state 105
+    COMA            shift and go to state 106
+
+
+state 75
+
+    (65) lvalues -> ID . COLON expresion_logica
+
+    COLON           shift and go to state 107
+
+
+state 76
+
+    (25) instruccion_if -> IF LPAREN expresion_logica . RPAREN ifAux
+    (26) instruccion_if -> IF LPAREN expresion_logica . RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> IF LPAREN expresion_logica . RPAREN ifAux ELSE ifAux
+
+    RPAREN          shift and go to state 108
+
+
+state 77
+
+    (29) instruccion_while -> WHILE LPAREN expresion_logica . RPAREN LLAVE_A instrucciones LLAVE_C
+
+    RPAREN          shift and go to state 109
+
+
+state 78
+
+    (30) declaracion_funcion -> FUNCTION ID LPAREN . params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (31) params -> . lparams
+    (32) params -> . empty
+    (33) lparams -> . lparams COMA param
+    (34) lparams -> . param
+    (76) empty -> .
+    (35) param -> . expresion_logica COLON tipo_dato
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    RPAREN          reduce using rule 76 (empty -> .)
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    params                         shift and go to state 110
+    lparams                        shift and go to state 111
+    empty                          shift and go to state 112
+    param                          shift and go to state 113
+    expresion_logica               shift and go to state 114
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 79
+
+    (9) interface_props -> ID . COLON tipo_dato
+
+    COLON           shift and go to state 115
+
+
+state 80
+
+    (7) interface_definition -> INTERFACE ID LLAVE_A interface_props . SEMICOLON LLAVE_C
+    (8) interface_props -> interface_props . SEMICOLON ID COLON tipo_dato
+
+    SEMICOLON       shift and go to state 116
+
+
+state 81
+
+    (19) asignacion -> ID ASIG expresion_logica SEMICOLON .
+
+    INTERFACE       reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    CONSOLE         reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    ID              reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    RETURN          reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    IF              reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    WHILE           reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    FUNCTION        reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    CONST           reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    VAR             reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    $end            reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+    LLAVE_C         reduce using rule 19 (asignacion -> ID ASIG expresion_logica SEMICOLON .)
+
+
+state 82
+
+    (66) llamada -> ID LPAREN args RPAREN .
+
+    SEMICOLON       reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    MAYOR           reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    MENOR           reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    MAYORI          reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    MENORI          reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    IGUAL           reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    DIFF            reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    PLUS            reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    MINUS           reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    TIMES           reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    DIVIDE          reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    MODULE          reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    AND             reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    OR              reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    COMA            reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    RPAREN          reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    COLON           reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+    LLAVE_C         reduce using rule 66 (llamada -> ID LPAREN args RPAREN .)
+
+
+state 83
+
+    (69) lexpresiones -> lexpresiones COMA . expresion_logica
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 117
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 84
+
+    (17) print -> CONSOLE DOT LOG LPAREN . expresion_logica RPAREN SEMICOLON
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 118
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 85
+
+    (74) tipo_dato -> ID .
+
+    ASIG            reduce using rule 74 (tipo_dato -> ID .)
+    SEMICOLON       reduce using rule 74 (tipo_dato -> ID .)
+    COMA            reduce using rule 74 (tipo_dato -> ID .)
+    RPAREN          reduce using rule 74 (tipo_dato -> ID .)
+    LLAVE_A         reduce using rule 74 (tipo_dato -> ID .)
+
+
+state 86
+
+    (18) declare -> tipo_declaracion ID COLON tipo_dato . ASIG expresion_logica SEMICOLON
+
+    ASIG            shift and go to state 119
+
+
+state 87
+
+    (71) tipo_dato -> STRING .
+
+    ASIG            reduce using rule 71 (tipo_dato -> STRING .)
+    SEMICOLON       reduce using rule 71 (tipo_dato -> STRING .)
+    COMA            reduce using rule 71 (tipo_dato -> STRING .)
+    RPAREN          reduce using rule 71 (tipo_dato -> STRING .)
+    LLAVE_A         reduce using rule 71 (tipo_dato -> STRING .)
+
+
+state 88
+
+    (72) tipo_dato -> NUMBER .
+
+    ASIG            reduce using rule 72 (tipo_dato -> NUMBER .)
+    SEMICOLON       reduce using rule 72 (tipo_dato -> NUMBER .)
+    COMA            reduce using rule 72 (tipo_dato -> NUMBER .)
+    RPAREN          reduce using rule 72 (tipo_dato -> NUMBER .)
+    LLAVE_A         reduce using rule 72 (tipo_dato -> NUMBER .)
+
+
+state 89
+
+    (73) tipo_dato -> BOOLEAN .
+
+    ASIG            reduce using rule 73 (tipo_dato -> BOOLEAN .)
+    SEMICOLON       reduce using rule 73 (tipo_dato -> BOOLEAN .)
+    COMA            reduce using rule 73 (tipo_dato -> BOOLEAN .)
+    RPAREN          reduce using rule 73 (tipo_dato -> BOOLEAN .)
+    LLAVE_A         reduce using rule 73 (tipo_dato -> BOOLEAN .)
+
+
+state 90
+
+    (75) tipo_dato -> empty .
+
+    ASIG            reduce using rule 75 (tipo_dato -> empty .)
+    SEMICOLON       reduce using rule 75 (tipo_dato -> empty .)
+    COMA            reduce using rule 75 (tipo_dato -> empty .)
+    RPAREN          reduce using rule 75 (tipo_dato -> empty .)
+    LLAVE_A         reduce using rule 75 (tipo_dato -> empty .)
+
+
+state 91
+
+    (38) expresion_logica -> expresion_relacional AND expresion_relacional .
+
+    SEMICOLON       reduce using rule 38 (expresion_logica -> expresion_relacional AND expresion_relacional .)
+    COMA            reduce using rule 38 (expresion_logica -> expresion_relacional AND expresion_relacional .)
+    RPAREN          reduce using rule 38 (expresion_logica -> expresion_relacional AND expresion_relacional .)
+    COLON           reduce using rule 38 (expresion_logica -> expresion_relacional AND expresion_relacional .)
+    LLAVE_C         reduce using rule 38 (expresion_logica -> expresion_relacional AND expresion_relacional .)
+
+
+state 92
+
+    (39) expresion_logica -> expresion_relacional OR expresion_relacional .
+
+    SEMICOLON       reduce using rule 39 (expresion_logica -> expresion_relacional OR expresion_relacional .)
+    COMA            reduce using rule 39 (expresion_logica -> expresion_relacional OR expresion_relacional .)
+    RPAREN          reduce using rule 39 (expresion_logica -> expresion_relacional OR expresion_relacional .)
+    COLON           reduce using rule 39 (expresion_logica -> expresion_relacional OR expresion_relacional .)
+    LLAVE_C         reduce using rule 39 (expresion_logica -> expresion_relacional OR expresion_relacional .)
+
+
+state 93
+
+    (42) expresion_relacional -> expresion_numerica MAYOR expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 42 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    OR              reduce using rule 42 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    SEMICOLON       reduce using rule 42 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    COMA            reduce using rule 42 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    RPAREN          reduce using rule 42 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    COLON           reduce using rule 42 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    LLAVE_C         reduce using rule 42 (expresion_relacional -> expresion_numerica MAYOR expresion_numerica .)
+    PLUS            shift and go to state 67
+    MINUS           shift and go to state 68
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+
+state 94
+
+    (43) expresion_relacional -> expresion_numerica MENOR expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 43 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    OR              reduce using rule 43 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    SEMICOLON       reduce using rule 43 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    COMA            reduce using rule 43 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    RPAREN          reduce using rule 43 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    COLON           reduce using rule 43 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    LLAVE_C         reduce using rule 43 (expresion_relacional -> expresion_numerica MENOR expresion_numerica .)
+    PLUS            shift and go to state 67
+    MINUS           shift and go to state 68
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+
+state 95
+
+    (44) expresion_relacional -> expresion_numerica MAYORI expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 44 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    OR              reduce using rule 44 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    SEMICOLON       reduce using rule 44 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    COMA            reduce using rule 44 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    RPAREN          reduce using rule 44 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    COLON           reduce using rule 44 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    LLAVE_C         reduce using rule 44 (expresion_relacional -> expresion_numerica MAYORI expresion_numerica .)
+    PLUS            shift and go to state 67
+    MINUS           shift and go to state 68
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+
+state 96
+
+    (45) expresion_relacional -> expresion_numerica MENORI expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 45 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    OR              reduce using rule 45 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    SEMICOLON       reduce using rule 45 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    COMA            reduce using rule 45 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    RPAREN          reduce using rule 45 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    COLON           reduce using rule 45 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    LLAVE_C         reduce using rule 45 (expresion_relacional -> expresion_numerica MENORI expresion_numerica .)
+    PLUS            shift and go to state 67
+    MINUS           shift and go to state 68
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+
+state 97
+
+    (46) expresion_relacional -> expresion_numerica IGUAL expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 46 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    OR              reduce using rule 46 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    SEMICOLON       reduce using rule 46 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    COMA            reduce using rule 46 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    RPAREN          reduce using rule 46 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    COLON           reduce using rule 46 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    LLAVE_C         reduce using rule 46 (expresion_relacional -> expresion_numerica IGUAL expresion_numerica .)
+    PLUS            shift and go to state 67
+    MINUS           shift and go to state 68
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+
+state 98
+
+    (47) expresion_relacional -> expresion_numerica DIFF expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    AND             reduce using rule 47 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    OR              reduce using rule 47 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    SEMICOLON       reduce using rule 47 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    COMA            reduce using rule 47 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    RPAREN          reduce using rule 47 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    COLON           reduce using rule 47 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    LLAVE_C         reduce using rule 47 (expresion_relacional -> expresion_numerica DIFF expresion_numerica .)
+    PLUS            shift and go to state 67
+    MINUS           shift and go to state 68
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+
+state 99
+
+    (50) expresion_numerica -> expresion_numerica PLUS expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    MENOR           reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    MAYORI          reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    MENORI          reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    IGUAL           reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    DIFF            reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    PLUS            reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    MINUS           reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    AND             reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    OR              reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    SEMICOLON       reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    COMA            reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    RPAREN          reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    COLON           reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    LLAVE_C         reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .)
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+  ! TIMES           [ reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .) ]
+  ! DIVIDE          [ reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .) ]
+  ! MODULE          [ reduce using rule 50 (expresion_numerica -> expresion_numerica PLUS expresion_numerica .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+
+
+state 100
+
+    (51) expresion_numerica -> expresion_numerica MINUS expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    MENOR           reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    MAYORI          reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    MENORI          reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    IGUAL           reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    DIFF            reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    PLUS            reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    MINUS           reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    AND             reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    OR              reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    SEMICOLON       reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    COMA            reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    RPAREN          reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    COLON           reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    LLAVE_C         reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .)
+    TIMES           shift and go to state 69
+    DIVIDE          shift and go to state 70
+    MODULE          shift and go to state 71
+
+  ! TIMES           [ reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .) ]
+  ! DIVIDE          [ reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .) ]
+  ! MODULE          [ reduce using rule 51 (expresion_numerica -> expresion_numerica MINUS expresion_numerica .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+
+
+state 101
+
+    (52) expresion_numerica -> expresion_numerica TIMES expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MENOR           reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MAYORI          reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MENORI          reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    IGUAL           reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    DIFF            reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    PLUS            reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MINUS           reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    TIMES           reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    DIVIDE          reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    MODULE          reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    AND             reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    OR              reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    SEMICOLON       reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    COMA            reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    RPAREN          reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    COLON           reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+    LLAVE_C         reduce using rule 52 (expresion_numerica -> expresion_numerica TIMES expresion_numerica .)
+
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MODULE          [ shift and go to state 71 ]
+
+
+state 102
+
+    (53) expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MENOR           reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MAYORI          reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MENORI          reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    IGUAL           reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    DIFF            reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    PLUS            reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MINUS           reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    TIMES           reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    DIVIDE          reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    MODULE          reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    AND             reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    OR              reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    SEMICOLON       reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    COMA            reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    RPAREN          reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    COLON           reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+    LLAVE_C         reduce using rule 53 (expresion_numerica -> expresion_numerica DIVIDE expresion_numerica .)
+
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MODULE          [ shift and go to state 71 ]
+
+
+state 103
+
+    (54) expresion_numerica -> expresion_numerica MODULE expresion_numerica .
+    (50) expresion_numerica -> expresion_numerica . PLUS expresion_numerica
+    (51) expresion_numerica -> expresion_numerica . MINUS expresion_numerica
+    (52) expresion_numerica -> expresion_numerica . TIMES expresion_numerica
+    (53) expresion_numerica -> expresion_numerica . DIVIDE expresion_numerica
+    (54) expresion_numerica -> expresion_numerica . MODULE expresion_numerica
+
+    MAYOR           reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MENOR           reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MAYORI          reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MENORI          reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    IGUAL           reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    DIFF            reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    PLUS            reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MINUS           reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    TIMES           reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    DIVIDE          reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    MODULE          reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    AND             reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    OR              reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    SEMICOLON       reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    COMA            reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    RPAREN          reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    COLON           reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+    LLAVE_C         reduce using rule 54 (expresion_numerica -> expresion_numerica MODULE expresion_numerica .)
+
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MODULE          [ shift and go to state 71 ]
+
+
+state 104
+
+    (63) terminal -> ID DOT ID .
+
+    MAYOR           reduce using rule 63 (terminal -> ID DOT ID .)
+    MENOR           reduce using rule 63 (terminal -> ID DOT ID .)
+    MAYORI          reduce using rule 63 (terminal -> ID DOT ID .)
+    MENORI          reduce using rule 63 (terminal -> ID DOT ID .)
+    IGUAL           reduce using rule 63 (terminal -> ID DOT ID .)
+    DIFF            reduce using rule 63 (terminal -> ID DOT ID .)
+    PLUS            reduce using rule 63 (terminal -> ID DOT ID .)
+    MINUS           reduce using rule 63 (terminal -> ID DOT ID .)
+    TIMES           reduce using rule 63 (terminal -> ID DOT ID .)
+    DIVIDE          reduce using rule 63 (terminal -> ID DOT ID .)
+    MODULE          reduce using rule 63 (terminal -> ID DOT ID .)
+    AND             reduce using rule 63 (terminal -> ID DOT ID .)
+    OR              reduce using rule 63 (terminal -> ID DOT ID .)
+    SEMICOLON       reduce using rule 63 (terminal -> ID DOT ID .)
+    COMA            reduce using rule 63 (terminal -> ID DOT ID .)
+    RPAREN          reduce using rule 63 (terminal -> ID DOT ID .)
+    COLON           reduce using rule 63 (terminal -> ID DOT ID .)
+    LLAVE_C         reduce using rule 63 (terminal -> ID DOT ID .)
+
+
+state 105
+
+    (62) terminal -> LLAVE_A lvalues LLAVE_C .
+
+    MAYOR           reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    MENOR           reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    MAYORI          reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    MENORI          reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    IGUAL           reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    DIFF            reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    PLUS            reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    MINUS           reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    TIMES           reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    DIVIDE          reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    MODULE          reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    AND             reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    OR              reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    SEMICOLON       reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    COMA            reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    RPAREN          reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    COLON           reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+    LLAVE_C         reduce using rule 62 (terminal -> LLAVE_A lvalues LLAVE_C .)
+
+
+state 106
+
+    (64) lvalues -> lvalues COMA . ID COLON expresion_logica
+
+    ID              shift and go to state 120
+
+
+state 107
+
+    (65) lvalues -> ID COLON . expresion_logica
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 121
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 108
+
+    (25) instruccion_if -> IF LPAREN expresion_logica RPAREN . ifAux
+    (26) instruccion_if -> IF LPAREN expresion_logica RPAREN . ifAux ELSE instruccion_if
+    (27) instruccion_if -> IF LPAREN expresion_logica RPAREN . ifAux ELSE ifAux
+    (28) ifAux -> . LLAVE_A instrucciones LLAVE_C
+
+    LLAVE_A         shift and go to state 123
+
+    ifAux                          shift and go to state 122
+
+state 109
+
+    (29) instruccion_while -> WHILE LPAREN expresion_logica RPAREN . LLAVE_A instrucciones LLAVE_C
+
+    LLAVE_A         shift and go to state 124
+
+
+state 110
+
+    (30) declaracion_funcion -> FUNCTION ID LPAREN params . RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+
+    RPAREN          shift and go to state 125
+
+
+state 111
+
+    (31) params -> lparams .
+    (33) lparams -> lparams . COMA param
+
+    RPAREN          reduce using rule 31 (params -> lparams .)
+    COMA            shift and go to state 126
+
+
+state 112
+
+    (32) params -> empty .
+
+    RPAREN          reduce using rule 32 (params -> empty .)
+
+
+state 113
+
+    (34) lparams -> param .
+
+    COMA            reduce using rule 34 (lparams -> param .)
+    RPAREN          reduce using rule 34 (lparams -> param .)
+
+
+state 114
+
+    (35) param -> expresion_logica . COLON tipo_dato
+
+    COLON           shift and go to state 127
+
+
+state 115
+
+    (9) interface_props -> ID COLON . tipo_dato
+    (71) tipo_dato -> . STRING
+    (72) tipo_dato -> . NUMBER
+    (73) tipo_dato -> . BOOLEAN
+    (74) tipo_dato -> . ID
+    (75) tipo_dato -> . empty
+    (76) empty -> .
+
+    STRING          shift and go to state 87
+    NUMBER          shift and go to state 88
+    BOOLEAN         shift and go to state 89
+    ID              shift and go to state 85
+    SEMICOLON       reduce using rule 76 (empty -> .)
+
+    tipo_dato                      shift and go to state 128
+    empty                          shift and go to state 90
+
+state 116
+
+    (7) interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON . LLAVE_C
+    (8) interface_props -> interface_props SEMICOLON . ID COLON tipo_dato
+
+    LLAVE_C         shift and go to state 130
+    ID              shift and go to state 129
+
+
+state 117
+
+    (69) lexpresiones -> lexpresiones COMA expresion_logica .
+
+    COMA            reduce using rule 69 (lexpresiones -> lexpresiones COMA expresion_logica .)
+    RPAREN          reduce using rule 69 (lexpresiones -> lexpresiones COMA expresion_logica .)
+
+
+state 118
+
+    (17) print -> CONSOLE DOT LOG LPAREN expresion_logica . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 131
+
+
+state 119
+
+    (18) declare -> tipo_declaracion ID COLON tipo_dato ASIG . expresion_logica SEMICOLON
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 132
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 120
+
+    (64) lvalues -> lvalues COMA ID . COLON expresion_logica
+
+    COLON           shift and go to state 133
+
+
+state 121
+
+    (65) lvalues -> ID COLON expresion_logica .
+
+    LLAVE_C         reduce using rule 65 (lvalues -> ID COLON expresion_logica .)
+    COMA            reduce using rule 65 (lvalues -> ID COLON expresion_logica .)
+
+
+state 122
+
+    (25) instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .
+    (26) instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux . ELSE instruccion_if
+    (27) instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux . ELSE ifAux
+
+    INTERFACE       reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    CONSOLE         reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    ID              reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    RETURN          reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    IF              reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    WHILE           reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    FUNCTION        reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    CONST           reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    VAR             reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    $end            reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    LLAVE_C         reduce using rule 25 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux .)
+    ELSE            shift and go to state 134
+
+
+state 123
+
+    (28) ifAux -> LLAVE_A . instrucciones LLAVE_C
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instrucciones -> . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion -> . instruccion_bloque
+    (6) instruccion -> . interface_definition
+    (10) instruccion_inline -> . print
+    (11) instruccion_inline -> . declare
+    (12) instruccion_inline -> . asignacion
+    (13) instruccion_inline -> . llamada SEMICOLON
+    (14) instruccion_inline -> . retorno
+    (22) instruccion_bloque -> . instruccion_if
+    (23) instruccion_bloque -> . instruccion_while
+    (24) instruccion_bloque -> . declaracion_funcion
+    (7) interface_definition -> . INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+    (17) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (18) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (19) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (66) llamada -> . ID LPAREN args RPAREN
+    (15) retorno -> . RETURN expresion_logica SEMICOLON
+    (16) retorno -> . RETURN SEMICOLON
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (29) instruccion_while -> . WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (30) declaracion_funcion -> . FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (20) tipo_declaracion -> . CONST
+    (21) tipo_declaracion -> . VAR
+
+    INTERFACE       shift and go to state 15
+    CONSOLE         shift and go to state 17
+    ID              shift and go to state 16
+    RETURN          shift and go to state 19
+    IF              shift and go to state 20
+    WHILE           shift and go to state 21
+    FUNCTION        shift and go to state 22
+    CONST           shift and go to state 23
+    VAR             shift and go to state 24
+
+    instrucciones                  shift and go to state 135
+    instruccion                    shift and go to state 3
+    instruccion_inline             shift and go to state 4
+    instruccion_bloque             shift and go to state 5
+    interface_definition           shift and go to state 6
+    print                          shift and go to state 7
+    declare                        shift and go to state 8
+    asignacion                     shift and go to state 9
+    llamada                        shift and go to state 10
+    retorno                        shift and go to state 11
+    instruccion_if                 shift and go to state 12
+    instruccion_while              shift and go to state 13
+    declaracion_funcion            shift and go to state 14
+    tipo_declaracion               shift and go to state 18
+
+state 124
+
+    (29) instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A . instrucciones LLAVE_C
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instrucciones -> . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion -> . instruccion_bloque
+    (6) instruccion -> . interface_definition
+    (10) instruccion_inline -> . print
+    (11) instruccion_inline -> . declare
+    (12) instruccion_inline -> . asignacion
+    (13) instruccion_inline -> . llamada SEMICOLON
+    (14) instruccion_inline -> . retorno
+    (22) instruccion_bloque -> . instruccion_if
+    (23) instruccion_bloque -> . instruccion_while
+    (24) instruccion_bloque -> . declaracion_funcion
+    (7) interface_definition -> . INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+    (17) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (18) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (19) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (66) llamada -> . ID LPAREN args RPAREN
+    (15) retorno -> . RETURN expresion_logica SEMICOLON
+    (16) retorno -> . RETURN SEMICOLON
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (29) instruccion_while -> . WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (30) declaracion_funcion -> . FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (20) tipo_declaracion -> . CONST
+    (21) tipo_declaracion -> . VAR
+
+    INTERFACE       shift and go to state 15
+    CONSOLE         shift and go to state 17
+    ID              shift and go to state 16
+    RETURN          shift and go to state 19
+    IF              shift and go to state 20
+    WHILE           shift and go to state 21
+    FUNCTION        shift and go to state 22
+    CONST           shift and go to state 23
+    VAR             shift and go to state 24
+
+    instrucciones                  shift and go to state 136
+    instruccion                    shift and go to state 3
+    instruccion_inline             shift and go to state 4
+    instruccion_bloque             shift and go to state 5
+    interface_definition           shift and go to state 6
+    print                          shift and go to state 7
+    declare                        shift and go to state 8
+    asignacion                     shift and go to state 9
+    llamada                        shift and go to state 10
+    retorno                        shift and go to state 11
+    instruccion_if                 shift and go to state 12
+    instruccion_while              shift and go to state 13
+    declaracion_funcion            shift and go to state 14
+    tipo_declaracion               shift and go to state 18
+
+state 125
+
+    (30) declaracion_funcion -> FUNCTION ID LPAREN params RPAREN . fretorno LLAVE_A instrucciones LLAVE_C
+    (36) fretorno -> . COLON tipo_dato
+    (37) fretorno -> . empty
+    (76) empty -> .
+
+    COLON           shift and go to state 138
+    LLAVE_A         reduce using rule 76 (empty -> .)
+
+    fretorno                       shift and go to state 137
+    empty                          shift and go to state 139
+
+state 126
+
+    (33) lparams -> lparams COMA . param
+    (35) param -> . expresion_logica COLON tipo_dato
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    param                          shift and go to state 140
+    expresion_logica               shift and go to state 114
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 127
+
+    (35) param -> expresion_logica COLON . tipo_dato
+    (71) tipo_dato -> . STRING
+    (72) tipo_dato -> . NUMBER
+    (73) tipo_dato -> . BOOLEAN
+    (74) tipo_dato -> . ID
+    (75) tipo_dato -> . empty
+    (76) empty -> .
+
+    STRING          shift and go to state 87
+    NUMBER          shift and go to state 88
+    BOOLEAN         shift and go to state 89
+    ID              shift and go to state 85
+    COMA            reduce using rule 76 (empty -> .)
+    RPAREN          reduce using rule 76 (empty -> .)
+
+    tipo_dato                      shift and go to state 141
+    empty                          shift and go to state 90
+
+state 128
+
+    (9) interface_props -> ID COLON tipo_dato .
+
+    SEMICOLON       reduce using rule 9 (interface_props -> ID COLON tipo_dato .)
+
+
+state 129
+
+    (8) interface_props -> interface_props SEMICOLON ID . COLON tipo_dato
+
+    COLON           shift and go to state 142
+
+
+state 130
+
+    (7) interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .
+
+    INTERFACE       reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    CONSOLE         reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    ID              reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    RETURN          reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    IF              reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    WHILE           reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    FUNCTION        reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    CONST           reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    VAR             reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    $end            reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+    LLAVE_C         reduce using rule 7 (interface_definition -> INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C .)
+
+
+state 131
+
+    (17) print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 143
+
+
+state 132
+
+    (18) declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica . SEMICOLON
+
+    SEMICOLON       shift and go to state 144
+
+
+state 133
+
+    (64) lvalues -> lvalues COMA ID COLON . expresion_logica
+    (38) expresion_logica -> . expresion_relacional AND expresion_relacional
+    (39) expresion_logica -> . expresion_relacional OR expresion_relacional
+    (40) expresion_logica -> . NOT expresion_relacional
+    (41) expresion_logica -> . expresion_relacional
+    (42) expresion_relacional -> . expresion_numerica MAYOR expresion_numerica
+    (43) expresion_relacional -> . expresion_numerica MENOR expresion_numerica
+    (44) expresion_relacional -> . expresion_numerica MAYORI expresion_numerica
+    (45) expresion_relacional -> . expresion_numerica MENORI expresion_numerica
+    (46) expresion_relacional -> . expresion_numerica IGUAL expresion_numerica
+    (47) expresion_relacional -> . expresion_numerica DIFF expresion_numerica
+    (48) expresion_relacional -> . expresion_numerica
+    (49) expresion_numerica -> . MINUS expresion_numerica
+    (50) expresion_numerica -> . expresion_numerica PLUS expresion_numerica
+    (51) expresion_numerica -> . expresion_numerica MINUS expresion_numerica
+    (52) expresion_numerica -> . expresion_numerica TIMES expresion_numerica
+    (53) expresion_numerica -> . expresion_numerica DIVIDE expresion_numerica
+    (54) expresion_numerica -> . expresion_numerica MODULE expresion_numerica
+    (55) expresion_numerica -> . terminal
+    (56) terminal -> . TNUMBER
+    (57) terminal -> . TSTRING
+    (58) terminal -> . TRUE
+    (59) terminal -> . FALSE
+    (60) terminal -> . ID
+    (61) terminal -> . llamada
+    (62) terminal -> . LLAVE_A lvalues LLAVE_C
+    (63) terminal -> . ID DOT ID
+    (66) llamada -> . ID LPAREN args RPAREN
+
+    NOT             shift and go to state 35
+    MINUS           shift and go to state 37
+    TNUMBER         shift and go to state 39
+    TSTRING         shift and go to state 40
+    TRUE            shift and go to state 41
+    FALSE           shift and go to state 42
+    ID              shift and go to state 43
+    LLAVE_A         shift and go to state 45
+
+    expresion_logica               shift and go to state 145
+    expresion_relacional           shift and go to state 34
+    expresion_numerica             shift and go to state 36
+    terminal                       shift and go to state 38
+    llamada                        shift and go to state 44
+
+state 134
+
+    (26) instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE . instruccion_if
+    (27) instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE . ifAux
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (28) ifAux -> . LLAVE_A instrucciones LLAVE_C
+
+    IF              shift and go to state 20
+    LLAVE_A         shift and go to state 123
+
+    ifAux                          shift and go to state 146
+    instruccion_if                 shift and go to state 147
+
+state 135
+
+    (28) ifAux -> LLAVE_A instrucciones . LLAVE_C
+    (2) instrucciones -> instrucciones . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion -> . instruccion_bloque
+    (6) instruccion -> . interface_definition
+    (10) instruccion_inline -> . print
+    (11) instruccion_inline -> . declare
+    (12) instruccion_inline -> . asignacion
+    (13) instruccion_inline -> . llamada SEMICOLON
+    (14) instruccion_inline -> . retorno
+    (22) instruccion_bloque -> . instruccion_if
+    (23) instruccion_bloque -> . instruccion_while
+    (24) instruccion_bloque -> . declaracion_funcion
+    (7) interface_definition -> . INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+    (17) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (18) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (19) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (66) llamada -> . ID LPAREN args RPAREN
+    (15) retorno -> . RETURN expresion_logica SEMICOLON
+    (16) retorno -> . RETURN SEMICOLON
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (29) instruccion_while -> . WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (30) declaracion_funcion -> . FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (20) tipo_declaracion -> . CONST
+    (21) tipo_declaracion -> . VAR
+
+    LLAVE_C         shift and go to state 148
+    INTERFACE       shift and go to state 15
+    CONSOLE         shift and go to state 17
+    ID              shift and go to state 16
+    RETURN          shift and go to state 19
+    IF              shift and go to state 20
+    WHILE           shift and go to state 21
+    FUNCTION        shift and go to state 22
+    CONST           shift and go to state 23
+    VAR             shift and go to state 24
+
+    instruccion                    shift and go to state 25
+    instruccion_inline             shift and go to state 4
+    instruccion_bloque             shift and go to state 5
+    interface_definition           shift and go to state 6
+    print                          shift and go to state 7
+    declare                        shift and go to state 8
+    asignacion                     shift and go to state 9
+    llamada                        shift and go to state 10
+    retorno                        shift and go to state 11
+    instruccion_if                 shift and go to state 12
+    instruccion_while              shift and go to state 13
+    declaracion_funcion            shift and go to state 14
+    tipo_declaracion               shift and go to state 18
+
+state 136
+
+    (29) instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones . LLAVE_C
+    (2) instrucciones -> instrucciones . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion -> . instruccion_bloque
+    (6) instruccion -> . interface_definition
+    (10) instruccion_inline -> . print
+    (11) instruccion_inline -> . declare
+    (12) instruccion_inline -> . asignacion
+    (13) instruccion_inline -> . llamada SEMICOLON
+    (14) instruccion_inline -> . retorno
+    (22) instruccion_bloque -> . instruccion_if
+    (23) instruccion_bloque -> . instruccion_while
+    (24) instruccion_bloque -> . declaracion_funcion
+    (7) interface_definition -> . INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+    (17) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (18) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (19) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (66) llamada -> . ID LPAREN args RPAREN
+    (15) retorno -> . RETURN expresion_logica SEMICOLON
+    (16) retorno -> . RETURN SEMICOLON
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (29) instruccion_while -> . WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (30) declaracion_funcion -> . FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (20) tipo_declaracion -> . CONST
+    (21) tipo_declaracion -> . VAR
+
+    LLAVE_C         shift and go to state 149
+    INTERFACE       shift and go to state 15
+    CONSOLE         shift and go to state 17
+    ID              shift and go to state 16
+    RETURN          shift and go to state 19
+    IF              shift and go to state 20
+    WHILE           shift and go to state 21
+    FUNCTION        shift and go to state 22
+    CONST           shift and go to state 23
+    VAR             shift and go to state 24
+
+    instruccion                    shift and go to state 25
+    instruccion_inline             shift and go to state 4
+    instruccion_bloque             shift and go to state 5
+    interface_definition           shift and go to state 6
+    print                          shift and go to state 7
+    declare                        shift and go to state 8
+    asignacion                     shift and go to state 9
+    llamada                        shift and go to state 10
+    retorno                        shift and go to state 11
+    instruccion_if                 shift and go to state 12
+    instruccion_while              shift and go to state 13
+    declaracion_funcion            shift and go to state 14
+    tipo_declaracion               shift and go to state 18
+
+state 137
+
+    (30) declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno . LLAVE_A instrucciones LLAVE_C
+
+    LLAVE_A         shift and go to state 150
+
+
+state 138
+
+    (36) fretorno -> COLON . tipo_dato
+    (71) tipo_dato -> . STRING
+    (72) tipo_dato -> . NUMBER
+    (73) tipo_dato -> . BOOLEAN
+    (74) tipo_dato -> . ID
+    (75) tipo_dato -> . empty
+    (76) empty -> .
+
+    STRING          shift and go to state 87
+    NUMBER          shift and go to state 88
+    BOOLEAN         shift and go to state 89
+    ID              shift and go to state 85
+    LLAVE_A         reduce using rule 76 (empty -> .)
+
+    tipo_dato                      shift and go to state 151
+    empty                          shift and go to state 90
+
+state 139
+
+    (37) fretorno -> empty .
+
+    LLAVE_A         reduce using rule 37 (fretorno -> empty .)
+
+
+state 140
+
+    (33) lparams -> lparams COMA param .
+
+    COMA            reduce using rule 33 (lparams -> lparams COMA param .)
+    RPAREN          reduce using rule 33 (lparams -> lparams COMA param .)
+
+
+state 141
+
+    (35) param -> expresion_logica COLON tipo_dato .
+
+    COMA            reduce using rule 35 (param -> expresion_logica COLON tipo_dato .)
+    RPAREN          reduce using rule 35 (param -> expresion_logica COLON tipo_dato .)
+
+
+state 142
+
+    (8) interface_props -> interface_props SEMICOLON ID COLON . tipo_dato
+    (71) tipo_dato -> . STRING
+    (72) tipo_dato -> . NUMBER
+    (73) tipo_dato -> . BOOLEAN
+    (74) tipo_dato -> . ID
+    (75) tipo_dato -> . empty
+    (76) empty -> .
+
+    STRING          shift and go to state 87
+    NUMBER          shift and go to state 88
+    BOOLEAN         shift and go to state 89
+    ID              shift and go to state 85
+    SEMICOLON       reduce using rule 76 (empty -> .)
+
+    tipo_dato                      shift and go to state 152
+    empty                          shift and go to state 90
+
+state 143
+
+    (17) print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .
+
+    INTERFACE       reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    CONSOLE         reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    ID              reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    RETURN          reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    IF              reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    WHILE           reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    FUNCTION        reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    CONST           reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    VAR             reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    $end            reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+    LLAVE_C         reduce using rule 17 (print -> CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON .)
+
+
+state 144
+
+    (18) declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .
+
+    INTERFACE       reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    CONSOLE         reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    ID              reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    RETURN          reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    IF              reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    WHILE           reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    FUNCTION        reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    CONST           reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    VAR             reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    $end            reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+    LLAVE_C         reduce using rule 18 (declare -> tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON .)
+
+
+state 145
+
+    (64) lvalues -> lvalues COMA ID COLON expresion_logica .
+
+    LLAVE_C         reduce using rule 64 (lvalues -> lvalues COMA ID COLON expresion_logica .)
+    COMA            reduce using rule 64 (lvalues -> lvalues COMA ID COLON expresion_logica .)
+
+
+state 146
+
+    (27) instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .
+
+    INTERFACE       reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    CONSOLE         reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    ID              reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    RETURN          reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    IF              reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    WHILE           reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    FUNCTION        reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    CONST           reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    VAR             reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    $end            reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+    LLAVE_C         reduce using rule 27 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux .)
+
+
+state 147
+
+    (26) instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .
+
+    INTERFACE       reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    CONSOLE         reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    ID              reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    RETURN          reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    IF              reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    WHILE           reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    FUNCTION        reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    CONST           reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    VAR             reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    $end            reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+    LLAVE_C         reduce using rule 26 (instruccion_if -> IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if .)
+
+
+state 148
+
+    (28) ifAux -> LLAVE_A instrucciones LLAVE_C .
+
+    ELSE            reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    INTERFACE       reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    CONSOLE         reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    ID              reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    RETURN          reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    IF              reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    WHILE           reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    FUNCTION        reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    CONST           reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    VAR             reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    $end            reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+    LLAVE_C         reduce using rule 28 (ifAux -> LLAVE_A instrucciones LLAVE_C .)
+
+
+state 149
+
+    (29) instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .
+
+    INTERFACE       reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    CONSOLE         reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    ID              reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    RETURN          reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    IF              reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    WHILE           reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    FUNCTION        reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    CONST           reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    VAR             reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    $end            reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+    LLAVE_C         reduce using rule 29 (instruccion_while -> WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C .)
+
+
+state 150
+
+    (30) declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A . instrucciones LLAVE_C
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instrucciones -> . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion -> . instruccion_bloque
+    (6) instruccion -> . interface_definition
+    (10) instruccion_inline -> . print
+    (11) instruccion_inline -> . declare
+    (12) instruccion_inline -> . asignacion
+    (13) instruccion_inline -> . llamada SEMICOLON
+    (14) instruccion_inline -> . retorno
+    (22) instruccion_bloque -> . instruccion_if
+    (23) instruccion_bloque -> . instruccion_while
+    (24) instruccion_bloque -> . declaracion_funcion
+    (7) interface_definition -> . INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+    (17) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (18) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (19) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (66) llamada -> . ID LPAREN args RPAREN
+    (15) retorno -> . RETURN expresion_logica SEMICOLON
+    (16) retorno -> . RETURN SEMICOLON
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (29) instruccion_while -> . WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (30) declaracion_funcion -> . FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (20) tipo_declaracion -> . CONST
+    (21) tipo_declaracion -> . VAR
+
+    INTERFACE       shift and go to state 15
+    CONSOLE         shift and go to state 17
+    ID              shift and go to state 16
+    RETURN          shift and go to state 19
+    IF              shift and go to state 20
+    WHILE           shift and go to state 21
+    FUNCTION        shift and go to state 22
+    CONST           shift and go to state 23
+    VAR             shift and go to state 24
+
+    instrucciones                  shift and go to state 153
+    instruccion                    shift and go to state 3
+    instruccion_inline             shift and go to state 4
+    instruccion_bloque             shift and go to state 5
+    interface_definition           shift and go to state 6
+    print                          shift and go to state 7
+    declare                        shift and go to state 8
+    asignacion                     shift and go to state 9
+    llamada                        shift and go to state 10
+    retorno                        shift and go to state 11
+    instruccion_if                 shift and go to state 12
+    instruccion_while              shift and go to state 13
+    declaracion_funcion            shift and go to state 14
+    tipo_declaracion               shift and go to state 18
+
+state 151
+
+    (36) fretorno -> COLON tipo_dato .
+
+    LLAVE_A         reduce using rule 36 (fretorno -> COLON tipo_dato .)
+
+
+state 152
+
+    (8) interface_props -> interface_props SEMICOLON ID COLON tipo_dato .
+
+    SEMICOLON       reduce using rule 8 (interface_props -> interface_props SEMICOLON ID COLON tipo_dato .)
+
+
+state 153
+
+    (30) declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones . LLAVE_C
+    (2) instrucciones -> instrucciones . instruccion
+    (4) instruccion -> . instruccion_inline
+    (5) instruccion -> . instruccion_bloque
+    (6) instruccion -> . interface_definition
+    (10) instruccion_inline -> . print
+    (11) instruccion_inline -> . declare
+    (12) instruccion_inline -> . asignacion
+    (13) instruccion_inline -> . llamada SEMICOLON
+    (14) instruccion_inline -> . retorno
+    (22) instruccion_bloque -> . instruccion_if
+    (23) instruccion_bloque -> . instruccion_while
+    (24) instruccion_bloque -> . declaracion_funcion
+    (7) interface_definition -> . INTERFACE ID LLAVE_A interface_props SEMICOLON LLAVE_C
+    (17) print -> . CONSOLE DOT LOG LPAREN expresion_logica RPAREN SEMICOLON
+    (18) declare -> . tipo_declaracion ID COLON tipo_dato ASIG expresion_logica SEMICOLON
+    (19) asignacion -> . ID ASIG expresion_logica SEMICOLON
+    (66) llamada -> . ID LPAREN args RPAREN
+    (15) retorno -> . RETURN expresion_logica SEMICOLON
+    (16) retorno -> . RETURN SEMICOLON
+    (25) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux
+    (26) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE instruccion_if
+    (27) instruccion_if -> . IF LPAREN expresion_logica RPAREN ifAux ELSE ifAux
+    (29) instruccion_while -> . WHILE LPAREN expresion_logica RPAREN LLAVE_A instrucciones LLAVE_C
+    (30) declaracion_funcion -> . FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C
+    (20) tipo_declaracion -> . CONST
+    (21) tipo_declaracion -> . VAR
+
+    LLAVE_C         shift and go to state 154
+    INTERFACE       shift and go to state 15
+    CONSOLE         shift and go to state 17
+    ID              shift and go to state 16
+    RETURN          shift and go to state 19
+    IF              shift and go to state 20
+    WHILE           shift and go to state 21
+    FUNCTION        shift and go to state 22
+    CONST           shift and go to state 23
+    VAR             shift and go to state 24
+
+    instruccion                    shift and go to state 25
+    instruccion_inline             shift and go to state 4
+    instruccion_bloque             shift and go to state 5
+    interface_definition           shift and go to state 6
+    print                          shift and go to state 7
+    declare                        shift and go to state 8
+    asignacion                     shift and go to state 9
+    llamada                        shift and go to state 10
+    retorno                        shift and go to state 11
+    instruccion_if                 shift and go to state 12
+    instruccion_while              shift and go to state 13
+    declaracion_funcion            shift and go to state 14
+    tipo_declaracion               shift and go to state 18
+
+state 154
+
+    (30) declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .
+
+    INTERFACE       reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    CONSOLE         reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    ID              reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    RETURN          reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    IF              reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    WHILE           reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    FUNCTION        reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    CONST           reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    VAR             reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    $end            reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+    LLAVE_C         reduce using rule 30 (declaracion_funcion -> FUNCTION ID LPAREN params RPAREN fretorno LLAVE_A instrucciones LLAVE_C .)
+

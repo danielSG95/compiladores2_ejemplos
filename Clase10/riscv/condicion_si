@@ -1,0 +1,26 @@
+.data
+msg1: .asciz "Se cumple la condicion\n"
+msg2: .asciz "No se cumple la condicion\n"
+.text
+.globl main
+
+main:
+    li a0, 5        # a0 = 5
+    li a1, 10       # a1 = 10
+    bge a0, a1, else_part  # si a0 >= a1, salta a else_part
+    # Código del bloque if aquí
+    la a1, msg1
+    jal ra, print
+    j endif
+else_part:
+    # Código del bloque else aquí
+    la a1, msg2
+    jal ra, print
+    
+print:
+	li a0, 1
+	li a2, 25
+	li a7, 64
+	ecall
+	ret
+endif:
